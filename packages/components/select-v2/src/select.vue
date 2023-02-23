@@ -263,6 +263,7 @@
           <span :class="nsSelectV2.e('suffix')">
             <el-icon
               v-if="iconComponent"
+              v-show="!showClearBtn"
               :class="[nsSelectV2.e('caret'), nsInput.e('icon'), iconReverse]"
             >
               <component :is="iconComponent" />

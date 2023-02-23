@@ -11,5 +11,10 @@
   },
   "types": "index.d.ts",
   "sideEffects": false,
-  "gitHead": "c69724230befa8fede0e6b9c37fb0b7e39fd7cdd"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": []
 }
