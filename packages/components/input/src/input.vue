@@ -147,7 +147,7 @@
         :style="countStyle"
         :class="nsInput.e('count')"
       >
-        {{ textLength }} / {{ attrs.maxlength }}
+        <span v-if="textLength" :style="{ color: '#1F2329'}">{{ textLength }}</span><template v-else>{{ textLength }}</template>/{{ attrs.maxlength }}
       </span>
     </template>
   </div>

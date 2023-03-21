@@ -83,6 +83,7 @@
                     >
                       {{ !dangerouslyUseHTMLString ? message : '' }}
                     </component>
+                    <p class="tip" v-if="!dangerouslyUseHTMLString && tip">{{ tip }}</p>
                     <component
                       :is="showInput ? 'label' : 'p'"
                       v-else
@@ -120,6 +121,7 @@
                 :class="[cancelButtonClass]"
                 :round="roundButton"
                 :size="btnSize"
+                plain
                 @click="handleAction('cancel')"
                 @keydown.prevent.enter="handleAction('cancel')"
               >
@@ -128,7 +130,7 @@
               <el-button
                 v-show="showConfirmButton"
                 ref="confirmRef"
-                type="primary"
+                :type="confirmButtonType"
                 :loading="confirmButtonLoading"
                 :class="[confirmButtonClasses]"
                 :round="roundButton"
@@ -277,10 +279,12 @@ export default defineComponent({
       inputValidator: null,
       inputErrorMessage: '',
       message: null,
+      tip: null,
       modalFade: true,
       modalClass: '',
       showCancelButton: false,
       showConfirmButton: true,
+      confirmButtonType: 'primary',
       type: '',
       title: undefined,
       showInput: false,

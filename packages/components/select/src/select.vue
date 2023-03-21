@@ -210,17 +210,17 @@
             </template>
             <template #suffix>
               <el-icon
-                v-if="iconComponent && !showClose"
-                :class="[nsSelect.e('caret'), nsSelect.e('icon'), iconReverse]"
-              >
-                <component :is="iconComponent" />
-              </el-icon>
-              <el-icon
                 v-if="showClose && clearIcon"
                 :class="[nsSelect.e('caret'), nsSelect.e('icon')]"
                 @click="handleClearClick"
               >
                 <component :is="clearIcon" />
+              </el-icon>
+              <el-icon
+                v-if="iconComponent"
+                :class="[nsSelect.e('caret'), nsSelect.e('icon'), iconReverse]"
+              >
+                <component :is="iconComponent" />
               </el-icon>
             </template>
           </el-input>
@@ -272,31 +272,31 @@ import {
   reactive,
   toRefs,
   unref,
-} from 'vue'
-import { useResizeObserver } from '@vueuse/core'
-import { placements } from '@popperjs/core'
-import { ClickOutside } from '@element-plus/directives'
-import { useFocus, useLocale, useNamespace } from '@element-plus/hooks'
-import ElInput from '@element-plus/components/input'
+} from "vue";
+import { useResizeObserver } from "@vueuse/core";
+import { placements } from "@popperjs/core";
+import { ClickOutside } from "@element-plus/directives";
+import { useFocus, useLocale, useNamespace } from "@element-plus/hooks";
+import ElInput from "@element-plus/components/input";
 import ElTooltip, {
   useTooltipContentProps,
-} from '@element-plus/components/tooltip'
-import ElScrollbar from '@element-plus/components/scrollbar'
-import ElTag, { tagProps } from '@element-plus/components/tag'
-import ElIcon from '@element-plus/components/icon'
-import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { iconPropType, isValidComponentSize } from '@element-plus/utils'
-import { ArrowDown, CircleClose } from '@element-plus/icons-vue'
-import ElOption from './option.vue'
-import ElSelectMenu from './select-dropdown.vue'
-import { useSelect, useSelectStates } from './useSelect'
-import { selectKey } from './token'
+} from "@element-plus/components/tooltip";
+import ElScrollbar from "@element-plus/components/scrollbar";
+import ElTag, { tagProps } from "@element-plus/components/tag";
+import ElIcon from "@element-plus/components/icon";
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from "@element-plus/constants";
+import { iconPropType, isValidComponentSize } from "@element-plus/utils";
+import { ArrowDown, CircleClose } from "@element-plus/icons-vue";
+import ElOption from "./option.vue";
+import ElSelectMenu from "./select-dropdown.vue";
+import { useSelect, useSelectStates } from "./useSelect";
+import { selectKey } from "./token";
 
-import type { PropType } from 'vue'
-import type { ComponentSize } from '@element-plus/constants'
-import type { SelectContext } from './token'
+import type { PropType } from "vue";
+import type { ComponentSize } from "@element-plus/constants";
+import type { SelectContext } from "./token";
 
-const COMPONENT_NAME = 'ElSelect'
+const COMPONENT_NAME = "ElSelect";
 export default defineComponent({
   name: COMPONENT_NAME,
   componentName: COMPONENT_NAME,
@@ -319,7 +319,7 @@ export default defineComponent({
     },
     autocomplete: {
       type: String,
-      default: 'off',
+      default: "off",
     },
     automaticDropdown: Boolean,
     size: {
@@ -327,8 +327,8 @@ export default defineComponent({
       validator: isValidComponentSize,
     },
     effect: {
-      type: String as PropType<'light' | 'dark' | string>,
-      default: 'light',
+      type: String as PropType<"light" | "dark" | string>,
+      default: "light",
     },
     disabled: Boolean,
     clearable: Boolean,
@@ -337,7 +337,7 @@ export default defineComponent({
     loading: Boolean,
     popperClass: {
       type: String,
-      default: '',
+      default: "",
     },
     remote: Boolean,
     loadingText: String,
@@ -360,7 +360,7 @@ export default defineComponent({
     },
     valueKey: {
       type: String,
-      default: 'value',
+      default: "value",
     },
     collapseTags: Boolean,
     collapseTagsTooltip: {
@@ -385,7 +385,7 @@ export default defineComponent({
       default: ArrowDown,
     },
     // eslint-disable-next-line vue/require-prop-types
-    tagType: { ...tagProps.type, default: 'info' },
+    tagType: { ...tagProps.type, default: "info" },
     validateEvent: {
       type: Boolean,
       default: true,
@@ -401,24 +401,24 @@ export default defineComponent({
     placement: {
       type: String,
       values: placements,
-      default: 'bottom-start',
+      default: "bottom-start",
     },
   },
   emits: [
     UPDATE_MODEL_EVENT,
     CHANGE_EVENT,
-    'remove-tag',
-    'clear',
-    'visible-change',
-    'focus',
-    'blur',
+    "remove-tag",
+    "clear",
+    "visible-change",
+    "focus",
+    "blur",
   ],
 
   setup(props, ctx) {
-    const nsSelect = useNamespace('select')
-    const nsInput = useNamespace('input')
-    const { t } = useLocale()
-    const states = useSelectStates(props)
+    const nsSelect = useNamespace("select");
+    const nsInput = useNamespace("input");
+    const { t } = useLocale();
+    const states = useSelectStates(props);
     const {
       optionsArray,
       selectSize,
@@ -469,9 +469,9 @@ export default defineComponent({
       groupQueryChange,
       handleMouseEnter,
       handleMouseLeave,
-    } = useSelect(props, states, ctx)
+    } = useSelect(props, states, ctx);
 
-    const { focus } = useFocus(reference)
+    const { focus } = useFocus(reference);
 
     const {
       inputWidth,
@@ -493,32 +493,32 @@ export default defineComponent({
       optionsCount,
       prefixWidth,
       tagInMultiLine,
-    } = toRefs(states)
+    } = toRefs(states);
 
     const wrapperKls = computed(() => {
-      const classList = [nsSelect.b()]
-      const _selectSize = unref(selectSize)
+      const classList = [nsSelect.b()];
+      const _selectSize = unref(selectSize);
       if (_selectSize) {
-        classList.push(nsSelect.m(_selectSize))
+        classList.push(nsSelect.m(_selectSize));
       }
       if (props.disabled) {
-        classList.push(nsSelect.m('disabled'))
+        classList.push(nsSelect.m("disabled"));
       }
-      return classList
-    })
+      return classList;
+    });
 
     const selectTagsStyle = computed(() => ({
       maxWidth: `${unref(inputWidth) - 32}px`,
-      width: '100%',
-    }))
+      width: "100%",
+    }));
 
     const tagTextStyle = computed(() => {
       const maxWidth =
         unref(inputWidth) > 123
           ? unref(inputWidth) - 123
-          : unref(inputWidth) - 75
-      return { maxWidth: `${maxWidth}px` }
-    })
+          : unref(inputWidth) - 75;
+      return { maxWidth: `${maxWidth}px` };
+    });
 
     provide(
       selectKey,
@@ -539,48 +539,48 @@ export default defineComponent({
         queryChange,
         groupQueryChange,
       }) as unknown as SelectContext
-    )
+    );
 
     onMounted(() => {
       states.cachedPlaceHolder = currentPlaceholder.value =
-        props.placeholder || t('el.select.placeholder')
+        props.placeholder || t("el.select.placeholder");
       if (
         props.multiple &&
         Array.isArray(props.modelValue) &&
         props.modelValue.length > 0
       ) {
-        currentPlaceholder.value = ''
+        currentPlaceholder.value = "";
       }
-      useResizeObserver(selectWrapper, handleResize)
+      useResizeObserver(selectWrapper, handleResize);
       if (props.remote && props.multiple) {
-        resetInputHeight()
+        resetInputHeight();
       }
       nextTick(() => {
-        const refEl = reference.value && reference.value.$el
-        if (!refEl) return
-        inputWidth.value = refEl.getBoundingClientRect().width
+        const refEl = reference.value && reference.value.$el;
+        if (!refEl) return;
+        inputWidth.value = refEl.getBoundingClientRect().width;
 
         if (ctx.slots.prefix) {
-          const prefix = refEl.querySelector(`.${nsInput.e('prefix')}`)
+          const prefix = refEl.querySelector(`.${nsInput.e("prefix")}`);
           prefixWidth.value = Math.max(
             prefix.getBoundingClientRect().width + 5,
             30
-          )
+          );
         }
-      })
-      setSelected()
-    })
+      });
+      setSelected();
+    });
 
     if (props.multiple && !Array.isArray(props.modelValue)) {
-      ctx.emit(UPDATE_MODEL_EVENT, [])
+      ctx.emit(UPDATE_MODEL_EVENT, []);
     }
     if (!props.multiple && Array.isArray(props.modelValue)) {
-      ctx.emit(UPDATE_MODEL_EVENT, '')
+      ctx.emit(UPDATE_MODEL_EVENT, "");
     }
 
     const popperPaneRef = computed(() => {
-      return tooltipRef.value?.popperRef?.contentRef
-    })
+      return tooltipRef.value?.popperRef?.contentRef;
+    });
 
     return {
       tagInMultiLine,
@@ -650,7 +650,7 @@ export default defineComponent({
       tagTextStyle,
       handleMouseEnter,
       handleMouseLeave,
-    }
+    };
   },
-})
+});
 </script>

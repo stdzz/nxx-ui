@@ -91,14 +91,6 @@
         @touchstart="onTouchStartInput"
         @keydown="handleKeydownInput"
       >
-        <el-icon
-          v-if="triggerIcon"
-          :class="[nsInput.e('icon'), nsRange.e('icon')]"
-          @mousedown.prevent="onMouseDownInput"
-          @touchstart="onTouchStartInput"
-        >
-          <component :is="triggerIcon" />
-        </el-icon>
         <input
           :id="id && id[0]"
           autocomplete="off"
@@ -144,6 +136,14 @@
           @click="onClearIconClick"
         >
           <component :is="clearIcon" />
+        </el-icon>
+        <el-icon
+          v-if="triggerIcon"
+          :class="[nsInput.e('icon'), nsRange.e('icon')]"
+          @mousedown.prevent="onMouseDownInput"
+          @touchstart="onTouchStartInput"
+        >
+          <component :is="triggerIcon" />
         </el-icon>
       </div>
     </template>

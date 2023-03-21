@@ -59,6 +59,7 @@
     );
     background-image: none;
     -webkit-appearance: none;
+    resize:none;
     @include inset-input-border(
       var(
         #{getCssVarName('input-border-color')},
@@ -276,9 +277,7 @@
           }
         }
       } @else {
-        > :first-child {
-          margin-left: 8px;
-        }
+        
       }
     }
   }
@@ -343,7 +342,7 @@
     }
   }
 
-  @each $size in (large, small) {
+  @each $size in (large, small, middle) {
     @include m($size) {
       @include css-var-from-global('input-height', ('component-size', $size));
 

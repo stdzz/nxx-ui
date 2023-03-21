@@ -29,6 +29,18 @@
   }
 
   @include set-css-var-value(
+    ('color', 'success', 'light', 21),
+    '#F0FBEF'
+  );
+
+  @include set-css-var-value(
+    ('color', 'error', 'light', 21),
+    '#FEF1F1'
+  );
+
+
+
+  @include set-css-var-value(
     ('color', $type, 'dark-2'),
     map.get($colors, $type, 'dark-2')
   );

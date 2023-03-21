@@ -292,7 +292,7 @@ export default defineComponent({
           onClick: prev,
         }),
         jumper: h(Jumper, {
-          size: props.small ? 'small' : 'default',
+          size: props.small ? 'small' : 'middle',
         }),
         pager: h(Pager, {
           currentPage: currentPageBridge.value,
@@ -314,7 +314,7 @@ export default defineComponent({
           pageSizes: props.pageSizes,
           popperClass: props.popperClass,
           disabled: props.disabled,
-          size: props.small ? 'small' : 'default',
+          size: props.small ? 'small' : 'middle',
         }),
         slot: slots?.default?.() ?? null,
         total: h(Total, { total: isAbsent(props.total) ? 0 : props.total }),

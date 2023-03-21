@@ -18,19 +18,19 @@ $colors: map.deep-merge(
     'white': #ffffff,
     'black': #000000,
     'primary': (
-      'base': #409eff,
+      'base': #3370FF,
     ),
     'success': (
-      'base': #67c23a,
+      'base': #34C724,
     ),
     'warning': (
-      'base': #e6a23c,
+      'base': #FF8800,
     ),
     'danger': (
-      'base': #f56c6c,
+      'base': #F54A45,
     ),
     'error': (
-      'base': #f56c6c,
+      'base': #F54A45,
     ),
     'info': (
       'base': #909399,
@@ -54,8 +54,9 @@ $color-info: map.get($colors, 'info', 'base') !default;
   $type,
   $number,
   $mode: 'light',
-  $mix-color: $color-white
-) {
+  $mix-color: $color-white,
+  $number10: 10,
+  ) {
   $colors: map.deep-merge(
     (
       $type: (
@@ -63,7 +64,7 @@ $color-info: map.get($colors, 'info', 'base') !default;
           mix(
             $mix-color,
             map.get($colors, $type, 'base'),
-            math.percentage(math.div($number, 10))
+            math.percentage(math.div($number, $number10))
           ),
       ),
     ),
@@ -83,8 +84,9 @@ $color-info: map.get($colors, 'info', 'base') !default;
 // 80% d9ecff
 // 90% ecf5ff
 @each $type in $types {
-  @for $i from 1 through 9 {
+  @for $i from 1 through 10 {
     @include set-color-mix-level($type, $i, 'light', $color-white);
+    // @include set-color-mix-level($type, $i + 10, 'light', $color-white, 20);
   }
 }
 
@@ -97,9 +99,10 @@ $text-color: () !default;
 $text-color: map.merge(
   (
     'primary': #303133,
-    'regular': #606266,
+    'regular': #1F2329,
     'secondary': #909399,
-    'placeholder': #a8abb2,
+    'placeholder': #BBBFC4,
+    'ban': #EFF0F1,
     'disabled': #c0c4cc,
   ),
   $text-color
@@ -110,8 +113,8 @@ $border-color: map.merge(
   (
     '': #dcdfe6,
     'light': #e4e7ed,
-    'lighter': #ebeef5,
-    'extra-light': #f2f6fc,
+    'lighter': rgba(31, 35, 41, 0.15),
+    'extra-light': #BBBFC4,
     'dark': #d4d7de,
     'darker': #cdd0d6,
   ),
@@ -233,6 +236,7 @@ $common-component-size: map.merge(
   (
     'large': 40px,
     'default': 32px,
+    'middle': 28px,
     'small': 24px,
   ),
   $common-component-size
@@ -269,8 +273,8 @@ $checkbox: map.merge(
     'font-size': 14px,
     'font-weight': getCssVar('font-weight-primary'),
     'text-color': getCssVar('text-color-regular'),
-    'input-height': 14px,
-    'input-width': 14px,
+    'input-height': 16px,
+    'input-width': 16px,
     'border-radius': getCssVar('border-radius-small'),
     'bg-color': getCssVar('fill-color', 'blank'),
     'input-border': getCssVar('border'),
@@ -279,7 +283,7 @@ $checkbox: map.merge(
     'disabled-icon-color': getCssVar('text-color-placeholder'),
     'disabled-checked-input-fill': getCssVar('border-color-extra-light'),
     'disabled-checked-input-border-color': getCssVar('border-color'),
-    'disabled-checked-icon-color': getCssVar('text-color-placeholder'),
+    'disabled-checked-icon-color': getCssVar('text-color-ban'),
     'checked-text-color': getCssVar('color-primary'),
     'checked-input-border-color': getCssVar('color-primary'),
     'checked-bg-color': getCssVar('color-primary'),
@@ -498,7 +502,7 @@ $message: map.merge(
   (
     'bg-color': getCssVar('color', 'info', 'light-9'),
     'border-color': getCssVar('border-color-lighter'),
-    'padding': 15px 19px,
+    'padding': 16px 20px,
     'close-size': 16px,
     'close-icon-color': getCssVar('text-color-placeholder'),
     'close-hover-color': getCssVar('text-color-secondary'),
@@ -804,10 +808,10 @@ $pagination: map.merge(
     'font-size': 14px,
     'bg-color': getCssVar('fill-color', 'blank'),
     'text-color': getCssVar('text-color-primary'),
-    'border-radius': 2px,
+    'border-radius': 4px,
     'button-color': getCssVar('text-color-primary'),
-    'button-width': 32px,
-    'button-height': 32px,
+    'button-width': 28px,
+    'button-height': 28px,
     'button-disabled-color': getCssVar('text-color-placeholder'),
     'button-disabled-bg-color': getCssVar('fill-color', 'blank'),
     'button-bg-color': getCssVar('fill-color'),
@@ -815,7 +819,7 @@ $pagination: map.merge(
     'font-size-small': 12px,
     'button-width-small': 24px,
     'button-height-small': 24px,
-    'item-gap': 16px,
+    'item-gap': 12px,
   ),
   $pagination
 );
@@ -873,8 +877,8 @@ $skeleton: map.merge(
 $tag: () !default;
 $tag: map.merge(
   (
-    'font-size': 12px,
-    'border-radius': 4px,
+    'font-size': 14px,
+    'border-radius': 2px,
     'border-radius-rounded': 9999px,
   ),
   $tag
@@ -999,8 +1003,8 @@ $menu: map.merge(
     'hover-text-color': getCssVar('color-primary'),
     'bg-color': getCssVar('fill-color', 'blank'),
     'hover-bg-color': getCssVar('color-primary-light-9'),
-    'item-height': 56px,
-    'sub-item-height': calc(#{getCssVar('menu-item-height')} - 6px),
+    'item-height': 48px,
+    'sub-item-height': 48px,
     'horizontal-sub-item-height': 36px,
     'item-font-size': getCssVar('font-size-base'),
     'item-hover-fill': getCssVar('color-primary-light-9'),
@@ -1054,7 +1058,7 @@ $date-editor: map.merge(
   (
     'width': 220px,
     'monthrange-width': 300px,
-    'daterange-width': 350px,
+    'daterange-width': 256px,
     'datetimerange-width': 400px,
   ),
   $date-editor
@@ -1154,7 +1158,7 @@ $timeline: map.merge(
 $tabs: () !default;
 $tabs: map.merge(
   (
-    'header-height': 40px,
+    'header-height': 46px,
   ),
   $tabs
 );

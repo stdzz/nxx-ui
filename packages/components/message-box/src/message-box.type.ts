@@ -19,6 +19,7 @@ export declare interface MessageBoxState {
   autofocus: boolean
   title: string
   message: string
+  tip: string
   type: MessageType
   icon: string | Component
   customClass: string
@@ -31,6 +32,7 @@ export declare interface MessageBoxState {
   inputValidator: MessageBoxInputValidator
   inputErrorMessage: string
   showConfirmButton: boolean
+  confirmButtonType: 'primary' | 'danger'
   showCancelButton: boolean
   action: Action
   dangerouslyUseHTMLString: boolean
@@ -95,6 +97,7 @@ export interface ElMessageBoxOptions {
 
   /** Custom class name of confirm button */
   confirmButtonClass?: string
+  confirmButtonType?: string
 
   /** Whether to align the content in center */
   center?: boolean
@@ -104,6 +107,8 @@ export interface ElMessageBoxOptions {
 
   /** Content of the MessageBox */
   message?: string | VNode | (() => VNode)
+
+  tip?: string
 
   /** Title of the MessageBox */
   title?: string | ElMessageBoxOptions

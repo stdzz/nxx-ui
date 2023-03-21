@@ -33,9 +33,18 @@ $directions: rtl, ltr, ttb, btt;
     align-items: center;
     color: rgb(114, 118, 123);
     display: flex;
-    margin-bottom: 32px;
-    padding: getCssVar('drawer-padding-primary');
-    padding-bottom: 0;
+    position: relative;
+    padding: 16px 24px;
+    margin: 0;
+    font-family: PingFang SC;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--el-text-color-regular, #1f2329);
+    box-sizing: border-box;
+    height: 57px;
+    mix-blend-mode: normal;
+    border-bottom: 1px solid var(--deComBorderColor50, rgba(187, 191, 196, 0.5));
     & > :first-child {
       flex: 1;
     }
@@ -49,9 +58,17 @@ $directions: rtl, ltr, ttb, btt;
   }
 
   @include e(footer) {
-    padding: getCssVar('drawer-padding-primary');
-    padding-top: 10px;
+    position: absolute;
+    height: 80px;
+    width: 100%;
+    padding: 24px;
+    right: 0;
+    z-index: 1;
+    bottom: 0;
+    box-sizing: border-box;
     text-align: right;
+    background-color: #fff;
+    box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.05);
   }
 
   &__close-btn {
@@ -62,18 +79,31 @@ $directions: rtl, ltr, ttb, btt;
     color: inherit;
     background-color: transparent;
     outline: none;
-    &:focus,
+    position: absolute;
+    right: 24px;
+    top: 16px;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     &:hover {
-      i {
-        color: getCssVar('color-primary');
-      }
+      background: #e9e9ea;
+    }
+
+    &:focus {
+      background: #d2d3d4;
     }
   }
 
   &__body {
     flex: 1;
-    padding: getCssVar('drawer-padding-primary');
     overflow: auto;
+    padding: 16px 24px;
+    position: unset;
+    overflow-y: auto;
+    padding-bottom: 80px;
     & > * {
       box-sizing: border-box;
     }

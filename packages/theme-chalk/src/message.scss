@@ -15,7 +15,7 @@
   border-radius: getCssVar('border-radius-base');
   border-width: getCssVar('border-width');
   border-style: getCssVar('border-style');
-  border-color: getCssVar('message', 'border-color');
+  border-color: getCssVar('message', 'text-color');
   position: fixed;
   left: 50%;
   top: 20px;
@@ -44,16 +44,22 @@
     @include m($type) {
       @include css-var-from-global(
         ('message', 'bg-color'),
-        ('color', $type, 'light-9')
+        ('color', $type, 'light-21')
       );
       @include css-var-from-global(
         ('message', 'border-color'),
-        ('color', $type, 'light-8')
+        ('color', $type, 'light-21')
       );
       @include css-var-from-global(('message', 'text-color'), ('color', $type));
 
       .#{$namespace}-message__content {
-        color: getCssVar('message', 'text-color');
+        font-family: PingFang SC;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22px;
+        letter-spacing: 0px;
+        text-align: left;
+        color: #1F2329;
         overflow-wrap: anywhere;
       }
     }
@@ -64,7 +70,7 @@
   }
 
   @include e(icon) {
-    margin-right: 10px;
+    margin-right: 8.67px;
   }
 
   .#{$namespace}-message__badge {
