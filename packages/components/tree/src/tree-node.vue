@@ -26,7 +26,7 @@
     @drop.stop="handleDrop"
   >
     <div
-      :class="ns.be('node', 'content')"
+      :class="[ns.be('node', 'content'), ns.is('menu', menu),]"
       :style="{ paddingLeft: (node.level - 1) * tree.props.indent + 'px' }"
     >
       <el-icon
@@ -71,6 +71,7 @@
           :key="getNodeKey(child)"
           :render-content="renderContent"
           :render-after-expand="renderAfterExpand"
+          :menu="menu"
           :show-checkbox="showCheckbox"
           :node="child"
           :accordion="accordion"
@@ -131,6 +132,10 @@ export default defineComponent({
     renderContent: Function,
     renderAfterExpand: Boolean,
     showCheckbox: {
+      type: Boolean,
+      default: false,
+    },
+    menu: {
       type: Boolean,
       default: false,
     },

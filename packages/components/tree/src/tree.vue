@@ -15,6 +15,7 @@
       :key="getNodeKey(child)"
       :node="child"
       :props="props"
+      :menu="menu"
       :accordion="accordion"
       :render-after-expand="renderAfterExpand"
       :show-checkbox="showCheckbox"
@@ -107,6 +108,10 @@ export default defineComponent({
       default: false,
     },
     draggable: {
+      type: Boolean,
+      default: false,
+    },
+    menu: {
       type: Boolean,
       default: false,
     },

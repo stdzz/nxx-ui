@@ -92,19 +92,82 @@ $button-icon-span-gap: map.merge(
     }
   }
 
+  @include when(secondary) {
+    color: getCssVar('text-color-regular');
+    background-color: getCssVar('color-white');
+    border: 1px solid;
+    border-color: getCssVar('text-color-placeholder');
+
+    &:hover,
+    &:focus {
+      background-color: var(--deComBorderColorHover, #f4f4f4);
+    }
+
+    &:active {
+      background-color: getCssVar('color-info-light-8');
+      outline: none;
+    }
+
+    &.is-loading {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--deTextPlaceholder, #f4f4f4);
+        background-color: var(--deWhite, #ffffff);
+        border-color: var(--deComponentStrokeColor, #BBBFC4);
+      }
+    }
+
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: #8f959e;
+        background-color: #ffffff;
+        border-color: #8f959e;
+      }
+    }
+  }
+
   @include when(plain) {
-    @include css-var-from-global(
-      ('button', 'hover', 'text-color'),
-      ('color', 'primary')
-    );
-    @include css-var-from-global(
-      ('button', 'hover', 'bg-color'),
-      ('fill-color', 'blank')
-    );
-    @include css-var-from-global(
-      ('button', 'hover', 'border-color'),
-      ('color', 'primary')
-    );
+    color: getCssVar('color-primary');
+    background-color: var(--deWhite, #ffffff);
+    border: 1px solid;
+    border-color: getCssVar('color-primary');
+
+    &:hover,
+    &:focus {
+      background: getCssVar('color-primary-light-7');
+    }
+
+    &:active {
+      background: getCssVar('color-primary-light-5');
+      outline: none;
+    }
+
+    &.is-loading {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: getCssVar('color-primary');
+        background-color: var(--deWhite, #ffffff);
+        opacity: .6;
+      }
+    }
+
+    &.is-disabled {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: #8f959e;
+        background-color: #ffffff;
+        border-color: #8f959e;
+      }
+    }
   }
 
   @include when(active) {

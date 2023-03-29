@@ -121,7 +121,7 @@
                 :class="[cancelButtonClass]"
                 :round="roundButton"
                 :size="btnSize"
-                plain
+                secondary
                 @click="handleAction('cancel')"
                 @keydown.prevent.enter="handleAction('cancel')"
               >

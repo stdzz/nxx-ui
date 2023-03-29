@@ -8,6 +8,7 @@
       ns.is('disabled', _disabled),
       ns.is('loading', loading),
       ns.is('plain', plain),
+      ns.is('secondary', secondary),
       ns.is('round', round),
       ns.is('circle', circle),
       ns.is('text', text),

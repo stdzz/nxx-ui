@@ -113,6 +113,7 @@ export declare interface TreeComponentProps {
   renderContent: RenderContentFunction
   showCheckbox: boolean
   draggable: boolean
+  menu: boolean
   allowDrag: AllowDragFunction
   allowDrop: AllowDropFunction
   props: TreeOptionProps

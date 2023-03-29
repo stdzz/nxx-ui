@@ -45,7 +45,28 @@
   &:focus {
     /* focus */
     > .#{$namespace}-tree-node__content {
+      position: relative;
+      color: getCssVar('color-primary');
       background-color: getCssVar('tree-node-hover-bg-color');
+    }
+
+    > .#{$namespace}-tree-node__content.is-menu {
+      background: rgba(51, 112, 255, 0.1);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    > .#{$namespace}-tree-node__content:not(.is-menu):after {
+      content: '';
+      border: solid;
+      border-width: 0 1.5px 1.5px 0;
+      border-color: getCssVar('color-primary');
+      position: absolute;
+      width: 4px;
+      height: 10px;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%) rotate(45deg);
     }
   }
 
@@ -59,7 +80,7 @@
   @include e(content) {
     display: flex;
     align-items: center;
-    height: 26px;
+    height: 32px;
     cursor: pointer;
 
     & > .#{$namespace}-tree-node__expand-icon {
@@ -84,11 +105,24 @@
     .#{$namespace}-tree.is-dragging.is-drop-not-allow & {
       cursor: not-allowed;
     }
+    &.is-menu {
+      height: 40px;
+      font-family: 'PingFang SC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+
+      &:hover {
+        background: rgba(31, 35, 41, 0.1);
+        border-radius: 4px;
+      }
+    }
   }
 
   @include e(expand-icon) {
     cursor: pointer;
-    color: getCssVar('tree-expand-icon-color');
+    color: #646A73;
     font-size: 12px;
 
     transform: rotate(0deg);
@@ -104,6 +138,27 @@
     }
     &.is-hidden {
       visibility: hidden;
+    }
+
+    &:hover {
+      position: relative;
+      &::before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        background: rgba(31, 35, 41, 0.1);
+        border-radius: 4px;
+        position: absolute;
+        top: 18%;
+        left: 18%;
+      }
+    }
+
+    &:active {
+      position: relative;
+      &::before {
+        background: rgba(31, 35, 41, 0.2);
+      }
     }
   }
 

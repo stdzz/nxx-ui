@@ -52,19 +52,19 @@
   }
 
   @include e(header) {
-    padding: getCssVar('dialog', 'padding-primary');
-    padding-bottom: 10px;
-    margin-right: 16px;
+    padding: 24px;
+    padding-bottom: 0;
+    margin-right: 24px;
     word-break: break-all;
   }
 
   @include e(headerbtn) {
     position: absolute;
-    top: 6px;
-    right: 0;
+    top: 25px;
+    right: 25px;
     padding: 0;
-    width: 54px;
-    height: 54px;
+    width: 15px;
+    height: 15px;
     background: transparent;
     border: none;
     outline: none;
@@ -88,22 +88,24 @@
   }
 
   @include e(title) {
-    line-height: getCssVar('dialog-font-line-height');
-    font-size: getCssVar('dialog-title-font-size');
-    color: getCssVar('text-color', 'primary');
+    color: getCssVar('text-color', 'regular');
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
   }
 
   @include e(body) {
-    padding: calc(#{getCssVar('dialog-padding-primary')} + 10px)
-      getCssVar('dialog-padding-primary');
+    padding: 24px;
     color: getCssVar('text-color', 'regular');
     font-size: getCssVar('dialog-content-font-size');
     word-break: break-all;
   }
 
   @include e(footer) {
-    padding: getCssVar('dialog-padding-primary');
-    padding-top: 10px;
+    padding: 24px;
+    padding-top: 0;
     text-align: right;
     box-sizing: border-box;
   }

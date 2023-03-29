@@ -65,6 +65,7 @@ export const buttonProps = buildProps({
    * @description determine whether it's a plain button
    */
   plain: Boolean,
+  secondary: Boolean,
   /**
    * @description determine whether it's a text button
    */
