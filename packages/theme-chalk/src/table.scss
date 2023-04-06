@@ -75,7 +75,7 @@
   @include e(expand-icon) {
     position: relative;
     cursor: pointer;
-    color: getCssVar('text-color', 'regular');
+    color: #646a73;
     font-size: 12px;
     transition: transform getCssVar('transition-duration-fast') ease-in-out;
     height: 20px;

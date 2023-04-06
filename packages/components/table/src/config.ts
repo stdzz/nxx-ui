@@ -2,7 +2,7 @@
 import { h } from 'vue'
 import ElCheckbox from '@element-plus/components/checkbox'
 import { ElIcon } from '@element-plus/components/icon'
-import { ArrowRight, Loading } from '@element-plus/icons-vue'
+import { CaretRight, Loading } from '@element-plus/icons-vue'
 import { getProp } from '@element-plus/utils'
 
 import type { VNode } from 'vue'
@@ -142,7 +142,7 @@ export const cellForced = {
             return [
               h(ElIcon, null, {
                 default: () => {
-                  return [h(ArrowRight)]
+                  return [h(CaretRight)]
                 },
               }),
             ]
@@ -216,7 +216,7 @@ export function treeCellPrefix<T>(
       ns.e('expand-icon'),
       treeNode.expanded ? ns.em('expand-icon', 'expanded') : '',
     ]
-    let icon = ArrowRight
+    let icon = CaretRight
     if (treeNode.loading) {
       icon = Loading
     }
