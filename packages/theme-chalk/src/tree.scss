@@ -140,7 +140,7 @@
       visibility: hidden;
     }
 
-    &:hover {
+    &:not(.is-leaf):hover {
       position: relative;
       &::before {
         content: '';
@@ -154,7 +154,7 @@
       }
     }
 
-    &:active {
+    &:not(.is-leaf):active {
       position: relative;
       &::before {
         background: rgba(31, 35, 41, 0.2);

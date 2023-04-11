@@ -3,7 +3,7 @@ import type { ComponentSize } from '@element-plus/constants'
 
 type MessageType = '' | 'success' | 'warning' | 'info' | 'error'
 
-export type Action = 'confirm' | 'close' | 'cancel'
+export type Action = 'confirm' | 'close' | 'cancel' | 'pre'
 export type MessageBoxType = '' | 'prompt' | 'alert' | 'confirm'
 export type MessageBoxData = MessageBoxInputData & Action
 export interface MessageBoxInputData {
@@ -32,15 +32,20 @@ export declare interface MessageBoxState {
   inputValidator: MessageBoxInputValidator
   inputErrorMessage: string
   showConfirmButton: boolean
+  showPreButton: boolean
+  preButtonType: 'primary' | 'danger'
   confirmButtonType: 'primary' | 'danger'
   showCancelButton: boolean
   action: Action
   dangerouslyUseHTMLString: boolean
+  preButtonText: string
   confirmButtonText: string
   cancelButtonText: string
+  preButtonLoading: boolean
   confirmButtonLoading: boolean
   cancelButtonLoading: boolean
   confirmButtonClass: string
+  preButtonDisabled: boolean
   confirmButtonDisabled: boolean
   cancelButtonClass: string
   editorErrorMessage: string
@@ -91,6 +96,8 @@ export interface ElMessageBoxOptions {
 
   /** Text content of confirm button */
   confirmButtonText?: string
+  preButtonText?: string
+
 
   /** Custom class name of cancel button */
   cancelButtonClass?: string
@@ -98,6 +105,7 @@ export interface ElMessageBoxOptions {
   /** Custom class name of confirm button */
   confirmButtonClass?: string
   confirmButtonType?: string
+  preButtonType?: string
 
   /** Whether to align the content in center */
   center?: boolean
@@ -136,6 +144,9 @@ export interface ElMessageBoxOptions {
 
   /** Whether to show a confirm button */
   showConfirmButton?: boolean
+
+  showPreButton?: boolean
+
 
   /** Whether to show a close button */
   showClose?: boolean

@@ -128,6 +128,18 @@
                 {{ cancelButtonText || t('el.messagebox.cancel') }}
               </el-button>
               <el-button
+                v-show="showPreButton"
+                :type="preButtonType"
+                :loading="preButtonLoading"
+                :round="roundButton"
+                :disabled="preButtonDisabled"
+                :size="btnSize"
+                @click="handleAction('pre')"
+                @keydown.prevent.enter="handleAction('pre')"
+              >
+                {{ preButtonText || t('el.messagebox.confirm') }}
+              </el-button>
+              <el-button
                 v-show="showConfirmButton"
                 ref="confirmRef"
                 :type="confirmButtonType"
@@ -266,6 +278,7 @@ export default defineComponent({
       cancelButtonText: '',
       cancelButtonClass: '',
       confirmButtonText: '',
+      preButtonText: '',
       confirmButtonClass: '',
       customClass: '',
       customStyle: {},
@@ -284,14 +297,18 @@ export default defineComponent({
       modalClass: '',
       showCancelButton: false,
       showConfirmButton: true,
+      showPreButton: false,
       confirmButtonType: 'primary',
+      preButtonType: 'danger',
       type: '',
       title: undefined,
       showInput: false,
       action: '' as Action,
       confirmButtonLoading: false,
+      preButtonLoading: false,
       cancelButtonLoading: false,
       confirmButtonDisabled: false,
+      preButtonLoading: false,
       editorErrorMessage: '',
       // refer to: https://github.com/ElemeFE/element/commit/2999279ae34ef10c373ca795c87b020ed6753eed
       // seemed ok for now without this state.
