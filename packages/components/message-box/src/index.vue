@@ -76,14 +76,15 @@
                 </el-icon>
                 <div v-if="hasMessage" :class="ns.e('message')">
                   <slot>
-                    <component
+                    <template v-if="!dangerouslyUseHTMLString">
+                      <component
                       :is="showInput ? 'label' : 'p'"
-                      v-if="!dangerouslyUseHTMLString"
                       :for="showInput ? inputId : undefined"
                     >
                       {{ !dangerouslyUseHTMLString ? message : '' }}
                     </component>
-                    <p class="tip" v-if="!dangerouslyUseHTMLString && tip">{{ tip }}</p>
+                    <p class="tip" v-if="tip">{{ tip }}</p>
+                    </template>
                     <component
                       :is="showInput ? 'label' : 'p'"
                       v-else
@@ -308,7 +309,6 @@ export default defineComponent({
       preButtonLoading: false,
       cancelButtonLoading: false,
       confirmButtonDisabled: false,
-      preButtonLoading: false,
       editorErrorMessage: '',
       // refer to: https://github.com/ElemeFE/element/commit/2999279ae34ef10c373ca795c87b020ed6753eed
       // seemed ok for now without this state.

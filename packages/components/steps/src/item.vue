@@ -33,6 +33,8 @@
           >
             <Close />
           </el-icon>
+          <div v-else-if="currentStatus === 'finish'" :class="ns.e('icon-inner')">
+          </div>
           <div v-else-if="!isSimple" :class="ns.e('icon-inner')">
             {{ index + 1 }}
           </div>

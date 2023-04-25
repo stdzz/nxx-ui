@@ -29,11 +29,21 @@
     @include when(process) {
       color: getCssVar('text-color', 'primary');
       border-color: getCssVar('text-color', 'primary');
+      @include e(icon) {
+        border: none;
+        font-family: PingFang SC;
+        font-weight: 400;
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        background: #3370ff;
+      }
     }
 
     @include when(wait) {
-      color: getCssVar('text-color', 'placeholder');
-      border-color: getCssVar('text-color', 'placeholder');
+      font-weight: 400;
+      color: #8f959e;
+      border-color: #8f959e;
     }
 
     @include when(success) {
@@ -49,6 +59,23 @@
     @include when(finish) {
       color: getCssVar('color-primary');
       border-color: getCssVar('color-primary');
+
+      &::after {
+        content: '';
+        border: solid;
+        border-width: 0 1.5px 1.5px 0;
+        border-color: getCssVar('color-primary');
+        position: absolute;
+        width: 5px;
+        height: 14px;
+        right: calc(50% - 4px);
+        top: 50%;
+        z-index: 5;
+        transform: translateY(-50%) rotate(45deg);
+      }
+      @include e(line) {
+        background-color: getCssVar('color-primary');
+      }
     }
   }
 
@@ -58,8 +85,8 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     font-size: 14px;
     box-sizing: border-box;
     background: getCssVar('bg-color');
@@ -67,7 +94,7 @@
 
     @include when(text) {
       border-radius: 50%;
-      border: 2px solid;
+      border: 1px solid;
       border-color: inherit;
     }
 
@@ -77,7 +104,7 @@
   }
 
   @include e(icon-inner) {
-    display: inline-block;
+    display: in28px-block;
     user-select: none;
     text-align: center;
     font-weight: bold;
@@ -110,6 +137,7 @@
     box-sizing: border-box;
     width: 0;
     height: 0;
+    border-top: none;
   }
 
   @include e(main) {
@@ -118,8 +146,13 @@
   }
 
   @include e(title) {
-    font-size: 16px;
-    line-height: 38px;
+    font-family: PingFang SC;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    text-align: center;
+    color: getCssVar('text-color-regular');
+    margin-top: 4px;
 
     @include when(process) {
       font-weight: bold;
@@ -127,7 +160,8 @@
     }
 
     @include when(wait) {
-      color: getCssVar('text-color', 'placeholder');
+      font-weight: 400;
+      color: #8f959e;
     }
 
     @include when(success) {
@@ -139,7 +173,7 @@
     }
 
     @include when(finish) {
-      color: getCssVar('color-primary');
+      color: getCssVar('text-color-regular');
     }
   }
 
@@ -175,8 +209,8 @@
     display: inline-block;
 
     @include e(line) {
-      height: 2px;
-      top: 11px;
+      height: 1px;
+      top: 14px;
       left: 0;
       right: 0;
     }
@@ -187,7 +221,7 @@
 
     @include e(head) {
       flex-grow: 0;
-      width: 24px;
+      width: 28px;
     }
 
     @include e(main) {
@@ -196,20 +230,20 @@
     }
 
     @include e(title) {
-      line-height: 24px;
+      line-height: 28px;
       padding-bottom: 8px;
     }
 
     @include e(line) {
-      width: 2px;
+      width: 1px;
       top: 0;
       bottom: 0;
-      left: 11px;
+      left: 14px;
     }
 
     @include e(icon) {
       @include when(icon) {
-        width: 24px;
+        width: 28px;
       }
     }
   }
@@ -229,8 +263,8 @@
     }
 
     @include e(line) {
-      left: 50%;
-      right: -50%;
+      left: calc(50% + 28px);
+      right: calc(-50% + 28px);
     }
   }
 
