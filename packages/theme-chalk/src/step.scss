@@ -25,6 +25,7 @@
   @include e(head) {
     position: relative;
     width: 100%;
+    line-height: 1;
 
     @include when(process) {
       color: getCssVar('text-color', 'primary');
