@@ -1,19 +1,28 @@
-import { computed, defineComponent, inject, ref, unref, watch } from 'vue'
+import { computed, defineComponent, inject, ref, unref, watch, nextTick } from 'vue'
 import { get } from 'lodash-unified'
 import { isObject, isUndefined } from '@element-plus/utils'
 import {
   DynamicSizeList,
   FixedSizeList,
 } from '@element-plus/components/virtual-list'
-import { useNamespace } from '@element-plus/hooks'
+import {
+  ElCheckbox,
+} from '@element-plus/components/checkbox'
+import { useLocale, useNamespace } from '@element-plus/hooks'
+import type { CheckboxValueType } from '@element-plus/components/checkbox'
+import {
+  ElButton,
+} from '@element-plus/components/button'
 import { EVENT_CODE } from '@element-plus/constants'
 import GroupItem from './group-item.vue'
 import OptionItem from './option-item.vue'
+import OptionItemCheckbox from './option-item-checkbox.vue'
 
 import { selectV2InjectionKey } from './token'
 
 import type { ItemProps } from '@element-plus/components/virtual-list'
 import type { Option, OptionItemProps } from './select.types'
+import { TextAlignProperty } from 'csstype'
 
 export default defineComponent({
   name: 'ElSelectDropdown',
@@ -29,17 +38,67 @@ export default defineComponent({
   setup(props, { slots, expose }) {
     const select = inject(selectV2InjectionKey)!
     const ns = useNamespace('select')
+    const { t } = useLocale()
     const cachedHeights = ref<Array<number>>([])
-
+      
     const listRef = ref()
+    const { props: { modelValue, showChecked, valueKey } } = select
+
+    
+    const checkAll = ref(false)
+    const isIndeterminate = ref(false)
+
+    const handleCheckAllChange = (val: CheckboxValueType) => {
+      checkAll.value = val as boolean
+      props.data.forEach((element: any) => {
+        element.checked = val
+      });
+      isIndeterminate.value = false
+      onSelectCheckbox(0)
+    }
 
     const size = computed(() => props.data.length)
     watch(
       () => size.value,
       () => {
+        if (showChecked) {
+          setCheckStatus()
+        }
         select.popper.value.updatePopper?.()
       }
     )
+
+    if (showChecked) {
+      props.data.forEach((element: any) => {
+        element.checked = modelValue.includes(get(element, valueKey))
+      });
+      const checkedCount = modelValue.length
+      checkAll.value = checkedCount === size.value
+      isIndeterminate.value = checkedCount > 0 && checkedCount < size.value
+    }
+
+    const onSelectCheckbox = (index: number) => {
+      select.onHover(index - 1)
+      nextTick(() => {
+        select.onHover(index)
+        setCheckStatus()
+      })
+    }
+
+    const setCheckStatus = () => {
+      const checkedCount = props.data.filter((ele: any) => ele.checked).length
+      checkAll.value = checkedCount === size.value
+      isIndeterminate.value = checkedCount > 0 && checkedCount < size.value
+    }
+
+    const confirm = () => {
+      select.onSelectMultiple((select.props.options || []).filter((ele: any) => ele.checked) as Option[])
+      select.handleClickOutside()
+    }
+
+    const clear = () => {
+      handleCheckAllChange(false)
+    }
 
     const isSized = computed(() =>
       isUndefined(select.props.estimatedOptionHeight)
@@ -132,7 +191,7 @@ export default defineComponent({
       const { index, data, style } = itemProps
       const sized = unref(isSized)
       const { itemSize, estimatedSize } = unref(listProps)
-      const { modelValue } = select.props
+      const { modelValue, showChecked } = select.props
       const { onSelect, onHover } = select
       const item = data[index]
       if (item.type === 'Group') {
@@ -148,6 +207,24 @@ export default defineComponent({
       const isSelected = isItemSelected(modelValue, item)
       const isDisabled = isItemDisabled(modelValue, isSelected)
       const isHovering = isItemHovering(index)
+
+      if (showChecked) {
+        return (<OptionItemCheckbox
+          {...itemProps}
+          disabled={item.disabled || isDisabled}
+          created={!!item.created}
+          hovering={isHovering}
+          item={item}
+          onSelect={onSelectCheckbox}
+          onHover={onHover}
+        >
+          {{
+            default: (props: OptionItemProps) =>
+              slots.default?.(props) || <span>{item.label}</span>,
+          }}
+        </OptionItemCheckbox>)
+      }
+      
       return (
         <OptionItem
           {...itemProps}
@@ -213,7 +290,9 @@ export default defineComponent({
 
     return () => {
       const { data, width } = props
-      const { height, multiple, scrollbarAlwaysOn } = select.props
+      const { height, multiple, scrollbarAlwaysOn, showChecked } = select.props
+
+      
 
       if (data.length === 0) {
         return (
@@ -229,9 +308,16 @@ export default defineComponent({
       }
 
       const List = unref(isSized) ? FixedSizeList : DynamicSizeList
-
+      
       return (
         <div class={[ns.b('dropdown'), ns.is('multiple', multiple)]}>
+          { showChecked ?  <div class='el-select-dropdown__option-item'>
+          <ElCheckbox
+            modelValue={checkAll.value}
+            indeterminate={isIndeterminate.value}
+            onChange={handleCheckAllChange}
+            >{ t('el.colorpicker.selectAll')}</ElCheckbox>
+          </div> : null}
           <List
             ref={listRef}
             {...unref(listProps)}
@@ -248,6 +334,14 @@ export default defineComponent({
               default: (props: ItemProps<any>) => <Item {...props} />,
             }}
           </List>
+          { showChecked ?  <p style={{textAlign: 'center' as TextAlignProperty, marginTop: 0}}>
+            <ElButton onClick={clear} secondary>
+              { t('el.datepicker.clear')}
+            </ElButton>
+            <ElButton onClick={confirm} secondary>
+              { t('el.datepicker.confirm') }
+            </ElButton>
+          </p> : null}
         </div>
       )
     }

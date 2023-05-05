@@ -4,6 +4,7 @@ export default {
     colorpicker: {
       confirm: 'OK',
       clear: 'Clear',
+      selectAll: 'select all',
       defaultLabel: 'color picker',
       description:
         'current color is {color}. press enter to select a new color.',

@@ -13,6 +13,7 @@ export const SelectProps = {
     type: String as PropType<'none' | 'both' | 'list' | 'inline'>,
     default: 'none',
   },
+  showChecked: Boolean,
   automaticDropdown: Boolean,
   clearable: Boolean,
   clearIcon: {

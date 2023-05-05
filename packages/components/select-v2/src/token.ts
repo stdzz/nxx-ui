@@ -8,7 +8,9 @@ export interface SelectV2Context {
   expanded: boolean
   popper: Ref<TooltipInstance>
   onSelect: (option: Option<any>, index: number, byClick?: boolean) => void
+  onSelectMultiple: (option: Option<any>[]) => void
   onHover: (idx: number) => void
+  handleClickOutside: () => void
   onKeyboardNavigate: (direction: 'forward' | 'backward') => void
   onKeyboardSelect: () => void
 }

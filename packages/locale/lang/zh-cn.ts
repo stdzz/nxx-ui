@@ -4,6 +4,7 @@ export default {
     colorpicker: {
       confirm: '确定',
       clear: '清空',
+      selectAll: '全选',
     },
     datepicker: {
       now: '此刻',

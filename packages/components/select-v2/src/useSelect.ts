@@ -394,6 +394,7 @@ const useSelect = (props: ExtractPropTypes<typeof SelectProps>, emit) => {
       let selectedOptions = (props.modelValue as any[]).slice()
 
       const index = getValueIndex(selectedOptions, getValueKey(option))
+      
       if (index > -1) {
         selectedOptions = [
           ...selectedOptions.slice(0, index),
@@ -441,10 +442,20 @@ const useSelect = (props: ExtractPropTypes<typeof SelectProps>, emit) => {
     }
   }
 
+  const onSelectMultiple = (option: Option[]) => {
+    const {
+      valueKey
+    } = props
+    let selectedOptions = [...option.map(ele => get(ele, valueKey))]
+    states.cachedOptions = [...option]
+    updateHoveringIndex(0)
+    update(selectedOptions)
+  }
+
   const deleteTag = (event: MouseEvent, tag: Option) => {
     const { valueKey } = props
     const index = (props.modelValue as Array<any>).indexOf(get(tag, valueKey))
-
+    
     if (index > -1 && !selectDisabled.value) {
       const value = [
         ...(props.modelValue as Array<unknown>).slice(0, index),
@@ -503,6 +514,9 @@ const useSelect = (props: ExtractPropTypes<typeof SelectProps>, emit) => {
   }
 
   const handleDel = (e: KeyboardEvent) => {
+    if (props.showChecked) {
+      return
+    }
     if (states.displayInputValue.length === 0) {
       e.preventDefault()
       const selected = (props.modelValue as Array<any>).slice()
@@ -582,6 +596,10 @@ const useSelect = (props: ExtractPropTypes<typeof SelectProps>, emit) => {
   }
 
   const onKeyboardSelect = () => {
+    const {
+      showChecked
+    } = props
+    if (showChecked) return
     if (!expanded.value) {
       return toggleMenu()
     } else if (
@@ -808,6 +826,7 @@ const useSelect = (props: ExtractPropTypes<typeof SelectProps>, emit) => {
     onKeyboardNavigate,
     onKeyboardSelect,
     onSelect,
+    onSelectMultiple,
     onHover: updateHoveringIndex,
     onUpdateInputValue,
     handleCompositionStart,

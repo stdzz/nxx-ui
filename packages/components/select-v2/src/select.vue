@@ -44,7 +44,7 @@
               <div :class="nsSelectV2.e('selected-item')">
                 <el-tag
                   :closable="
-                    !selectDisabled && !states.cachedOptions[0]?.disable
+                    !selectDisabled && !states.cachedOptions[0]?.disable && !showChecked
                   "
                   :size="collapseTagSize"
                   type="info"
@@ -94,7 +94,7 @@
                         >
                           <el-tag
                             :key="getValueKey(selected)"
-                            :closable="!selectDisabled && !selected.disabled"
+                            :closable="!selectDisabled && !selected.disabled && !showChecked"
                             :size="collapseTagSize"
                             class="in-tooltip"
                             type="info"
@@ -133,7 +133,7 @@
               >
                 <el-tag
                   :key="getValueKey(selected)"
-                  :closable="!selectDisabled && !selected.disabled"
+                  :closable="!selectDisabled && !selected.disabled && !showChecked"
                   :size="collapseTagSize"
                   type="info"
                   disable-transitions
@@ -349,7 +349,9 @@ export default defineComponent({
       }),
       popper: API.popper,
       onSelect: API.onSelect,
+      onSelectMultiple: API.onSelectMultiple,
       onHover: API.onHover,
+      handleClickOutside: API.handleClickOutside,
       onKeyboardNavigate: API.onKeyboardNavigate,
       onKeyboardSelect: API.onKeyboardSelect,
     } as any)
