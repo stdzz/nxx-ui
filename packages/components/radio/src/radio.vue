@@ -30,7 +30,7 @@
       />
       <span :class="ns.e('inner')" />
     </span>
-    <span :class="ns.e('label')" @keydown.stop>
+    <span :class="ns.e('label')" :style="modelValue === label ? {} : normalStyle" @keydown.stop>
       <slot>
         {{ label }}
       </slot>
@@ -39,7 +39,10 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick } from 'vue'
+import { nextTick, inject, computed } from 'vue'
+import type { CSSProperties } from 'vue'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { radioEmits, radioProps } from './radio'
 import { useRadio } from './use-radio'
@@ -56,6 +59,11 @@ const { radioRef, radioGroup, focus, size, disabled, modelValue } = useRadio(
   props,
   emit
 )
+const customStyle = inject('$custom-style-filter') as CustomStyle
+
+const normalStyle = computed<CSSProperties>(() => {
+  return formatterStyle(customStyle, ['text'])
+})
 
 function handleChange() {
   nextTick(() => emit('change', modelValue.value))

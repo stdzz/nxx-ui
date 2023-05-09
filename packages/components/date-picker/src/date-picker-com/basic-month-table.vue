@@ -20,7 +20,7 @@
           @keydown.enter.prevent.stop="handleMonthTableClick"
         >
           <div>
-            <span class="cell">
+            <span class="cell" :style="[isSelectedCell(cell) ? {} : formatterStyle(customStyle, ['text'])]">
               {{ t('el.datepicker.months.' + months[cell.text]) }}
             </span>
           </div>
@@ -31,12 +31,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch, inject } from 'vue'
 import dayjs from 'dayjs'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { rangeArr } from '@element-plus/components/time-picker'
 import { castArray, hasClass } from '@element-plus/utils'
 import { basicMonthTableProps } from '../props/basic-month-table'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 
 type MonthCell = {
   column: number
@@ -59,6 +61,7 @@ const props = defineProps(basicMonthTableProps)
 const emit = defineEmits(['changerange', 'pick', 'select'])
 
 const ns = useNamespace('month-table')
+const customStyle = inject('$custom-style-filter') as CustomStyle
 
 const { t, lang } = useLocale()
 const tbodyRef = ref<HTMLElement>()

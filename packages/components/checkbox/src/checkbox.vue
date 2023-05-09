@@ -56,7 +56,7 @@
       />
       <span :class="ns.e('inner')" />
     </span>
-    <span v-if="hasOwnLabel" :class="ns.e('label')">
+    <span v-if="hasOwnLabel" :style="normalStyle" :class="ns.e('label')">
       <slot />
       <template v-if="!$slots.default">{{ label }}</template>
     </span>
@@ -64,7 +64,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useSlots } from 'vue'
+import { useSlots, inject, computed } from 'vue'
+import type { CSSProperties } from 'vue'
 import { useNamespace } from '@element-plus/hooks'
 import { checkboxEmits, checkboxProps } from './checkbox'
 import { useCheckbox } from './composables'
@@ -89,6 +90,14 @@ const {
   handleChange,
   onClickRoot,
 } = useCheckbox(props, slots)
+
+const customStyle = inject('$custom-style-filter') as {
+  text: string
+      }
+
+const normalStyle = computed<CSSProperties>(() => {
+  return customStyle.text ? { color: customStyle.text } : {}
+})
 
 const ns = useNamespace('checkbox')
 </script>

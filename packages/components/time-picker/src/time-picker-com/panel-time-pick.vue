@@ -1,7 +1,7 @@
 <template>
   <transition :name="transitionName">
-    <div v-if="actualVisible || visible" :class="ns.b('panel')">
-      <div :class="[ns.be('panel', 'content'), { 'has-seconds': showSeconds }]">
+    <div :style="[formatterStyle(customStyle, ['background', 'border'])]"  v-if="actualVisible || visible" :class="ns.b('panel')">
+      <div  :class="[ns.be('panel', 'content'), { 'has-seconds': showSeconds }, { 'has-seconds-border': !!borderColor }]">
         <time-spinner
           ref="spinner"
           :role="datetimeRole || 'start'"
@@ -17,16 +17,18 @@
           @select-range="setSelectionRange"
         />
       </div>
-      <div :class="ns.be('panel', 'footer')">
+      <div :style="[formatterStyle(customStyle, ['border'])]" :class="ns.be('panel', 'footer')">
         <button
           type="button"
           :class="[ns.be('panel', 'btn'), 'cancel']"
+          :style="[formatterStyle(customStyle, ['text'])]"
           @click="handleCancel"
         >
           {{ t('el.datepicker.cancel') }}
         </button>
         <button
           type="button"
+          :style="[formatterStyle(customStyle, ['text'])]"
           :class="[ns.be('panel', 'btn'), 'confirm']"
           @click="handleConfirm()"
         >
@@ -49,6 +51,8 @@ import {
   buildAvailableTimeSlotGetter,
   useOldValue,
 } from '../composables/use-time-picker'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import TimeSpinner from './basic-time-spinner.vue'
 
 import type { Dayjs } from 'dayjs'
@@ -58,6 +62,10 @@ const emit = defineEmits(['pick', 'select-range', 'set-picker-option'])
 
 // Injections
 const pickerBase = inject('EP_PICKER_BASE') as any
+const customStyle = inject('$custom-style-filter') as CustomStyle
+const borderColor = computed(() => {
+  return customStyle.border
+})
 const {
   arrowControl,
   disabledHours,
@@ -175,3 +183,8 @@ emit('set-picker-option', ['handleKeydownInput', handleKeydown])
 emit('set-picker-option', ['getRangeAvailableTime', getRangeAvailableTime])
 emit('set-picker-option', ['getDefaultValue', getDefaultValue])
 </script>
+<style scoped>
+.has-seconds-border::before {
+  border-color: v-bind(borderColor) !important;
+}
+</style>

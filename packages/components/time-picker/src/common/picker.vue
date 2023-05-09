@@ -32,7 +32,6 @@
         :disabled="pickerDisabled"
         :placeholder="placeholder"
         :class="[nsDate.b('editor'), nsDate.bm('editor', type), $attrs.class]"
-        :style="$attrs.style"
         :readonly="!editable || readonly || isDatesPicker || type === 'week'"
         :label="label"
         :tabindex="tabindex"
@@ -84,7 +83,7 @@
           pickerSize ? nsRange.bm('editor', pickerSize) : '',
           $attrs.class,
         ]"
-        :style="($attrs.style as any)"
+        :style="[($attrs.style as any), formatterStyle(customStyle, ['background']), customStyle.border && { boxShadow: `0 0 0 1px ${customStyle.border} inset`}]"
         @click="handleFocusInput"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
@@ -99,7 +98,8 @@
           :value="displayValue && displayValue[0]"
           :disabled="pickerDisabled"
           :readonly="!editable || readonly"
-          :class="nsRange.b('input')"
+          :class="[nsRange.b('input'), { 'placeholderColor': placeholderColor }]"
+          :style="formatterStyle(customStyle, ['text'])"
           @mousedown="onMouseDownInput"
           @input="handleStartInput"
           @change="handleStartChange"
@@ -107,17 +107,18 @@
           @blur="handleBlurInput"
         />
         <slot name="range-separator">
-          <span :class="nsRange.b('separator')">{{ rangeSeparator }}</span>
+          <span :style="formatterStyle(customStyle, ['text'])" :class="nsRange.b('separator')">{{ rangeSeparator }}</span>
         </slot>
         <input
           :id="id && id[1]"
           autocomplete="off"
           :name="name && name[1]"
+          :style="formatterStyle(customStyle, ['text'])"
           :placeholder="endPlaceholder"
           :value="displayValue && displayValue[1]"
           :disabled="pickerDisabled"
           :readonly="!editable || readonly"
-          :class="nsRange.b('input')"
+          :class="[nsRange.b('input'), { 'placeholderColor': placeholderColor }]"
           @mousedown="onMouseDownInput"
           @focus="handleFocusInput"
           @blur="handleBlurInput"
@@ -170,6 +171,8 @@
 <script lang="ts" setup>
 import { computed, inject, nextTick, provide, ref, unref, watch } from 'vue'
 import { isEqual } from 'lodash-unified'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import { onClickOutside } from '@vueuse/core'
 import {
   useFormItem,
@@ -226,7 +229,10 @@ const nsRange = useNamespace('range')
 
 const { form, formItem } = useFormItem()
 const elPopperOptions = inject('ElPopperOptions', {} as Options)
-
+const customStyle = inject('$custom-style-filter') as CustomStyle
+const placeholderColor = computed(() => {
+  return customStyle.text
+})
 const refPopper = ref<TooltipInstance>()
 const inputRef = ref<HTMLElement | ComponentPublicInstance>()
 const pickerVisible = ref(false)
@@ -760,3 +766,8 @@ defineExpose({
   onPick,
 })
 </script>
+<style scoped>
+.placeholderColor::placeholder {
+  color: v-bind(placeholderColor) !important;
+}
+</style>

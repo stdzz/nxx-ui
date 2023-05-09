@@ -8,14 +8,16 @@
         'has-time': showTime,
       },
     ]"
+    :style="formatterStyle(customStyle, ['background', 'text'])"
   >
     <div :class="ppNs.e('body-wrapper')">
       <slot name="sidebar" :class="ppNs.e('sidebar')" />
-      <div v-if="hasShortcuts" :class="ppNs.e('sidebar')">
+      <div :style="formatterStyle(customStyle, ['background', 'border'])"  v-if="hasShortcuts" :class="ppNs.e('sidebar')">
         <button
           v-for="(shortcut, key) in shortcuts"
           :key="key"
           type="button"
+          :style="formatterStyle(customStyle, ['text'])"
           :class="ppNs.e('shortcut')"
           @click="handleShortcutClick(shortcut)"
         >
@@ -23,7 +25,7 @@
         </button>
       </div>
       <div :class="ppNs.e('body')">
-        <div v-if="showTime" :class="drpNs.e('time-header')">
+        <div :style="formatterStyle(customStyle, ['border'])" v-if="showTime" :class="drpNs.e('time-header')">
           <span :class="drpNs.e('editors-wrap')">
             <span :class="drpNs.e('time-picker-wrap')">
               <el-input
@@ -63,7 +65,7 @@
             </span>
           </span>
           <span>
-            <el-icon><arrow-right /></el-icon>
+            <el-icon :style="formatterStyle(customStyle, ['text'])"><arrow-right /></el-icon>
           </span>
           <span :class="drpNs.e('editors-wrap')" class="is-right">
             <span :class="drpNs.e('time-picker-wrap')">
@@ -106,10 +108,11 @@
             </span>
           </span>
         </div>
-        <div :class="[ppNs.e('content'), drpNs.e('content')]" class="is-left">
+        <div :style="formatterStyle(customStyle, ['border'])" :class="[ppNs.e('content'), drpNs.e('content')]" class="is-left">
           <div :class="drpNs.e('header')">
             <button
               type="button"
+              :style="formatterStyle(customStyle, ['text'])"
               :class="ppNs.e('icon-btn')"
               class="d-arrow-left"
               @click="leftPrevYear"
@@ -117,12 +120,13 @@
               <el-icon><d-arrow-left /></el-icon>
             </button>
             <button
+              :style="formatterStyle(customStyle, ['text'])"
               type="button"
               :class="ppNs.e('icon-btn')"
               class="arrow-left"
               @click="leftPrevMonth"
             >
-              <el-icon><arrow-left /></el-icon>
+              <el-icon :style="formatterStyle(customStyle, ['text'])"><arrow-left /></el-icon>
             </button>
             <button
               v-if="unlinkPanels"
@@ -162,7 +166,7 @@
             @select="onSelect"
           />
         </div>
-        <div :class="[ppNs.e('content'), drpNs.e('content')]" class="is-right">
+        <div :style="formatterStyle(customStyle, ['border'])" :class="[ppNs.e('content'), drpNs.e('content')]" class="is-right">
           <div :class="drpNs.e('header')">
             <button
               v-if="unlinkPanels"
@@ -189,6 +193,7 @@
             </button>
             <button
               type="button"
+              :style="formatterStyle(customStyle, ['text'])"
               :class="ppNs.e('icon-btn')"
               class="d-arrow-right"
               @click="rightNextYear"
@@ -197,6 +202,7 @@
             </button>
             <button
               type="button"
+              :style="formatterStyle(customStyle, ['text'])"
               :class="ppNs.e('icon-btn')"
               class="arrow-right"
               @click="rightNextMonth"
@@ -220,10 +226,11 @@
         </div>
       </div>
     </div>
-    <div v-if="showTime" :class="ppNs.e('footer')">
+    <div :style="formatterStyle(customStyle, ['background', 'border'])" v-if="showTime" :class="ppNs.e('footer')">
       <el-button
         v-if="clearable"
         text
+        :style="formatterStyle(customStyle, ['text'])"
         size="small"
         :class="ppNs.e('link-btn')"
         @click="handleClear"
@@ -234,6 +241,7 @@
         plain
         size="small"
         :class="ppNs.e('link-btn')"
+        :style="formatterStyle(customStyle, ['background', 'border', 'text'])"
         :disabled="btnDisabled"
         @click="handleRangeConfirm(false)"
       >
@@ -246,6 +254,8 @@
 <script lang="ts" setup>
 import { computed, inject, ref, toRef, unref } from 'vue'
 import dayjs from 'dayjs'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import { ClickOutside as vClickoutside } from '@element-plus/directives'
 import { isArray } from '@element-plus/utils'
 import { useLocale } from '@element-plus/hooks'
@@ -287,6 +297,8 @@ const emit = defineEmits([
 const unit = 'month'
 // FIXME: fix the type for ep picker
 const pickerBase = inject('EP_PICKER_BASE') as any
+const customStyle = inject('$custom-style-filter') as CustomStyle
+
 const {
   disabledDate,
   cellClassName,

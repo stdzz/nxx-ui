@@ -21,7 +21,7 @@
     />
     <span
       :class="ns.be('button', 'inner')"
-      :style="modelValue === label ? activeStyle : {}"
+      :style="modelValue === label ? activeStyle : normalStyle"
       @keydown.stop
     >
       <slot>
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 import { useNamespace } from '@element-plus/hooks'
 import { useRadio } from './use-radio'
 import { radioButtonProps } from './radio-button'
@@ -55,5 +55,13 @@ const activeStyle = computed<CSSProperties>(() => {
     boxShadow: radioGroup?.fill ? `-1px 0 0 0 ${radioGroup.fill}` : '',
     color: radioGroup?.textColor || '',
   }
+})
+
+const customStyle = inject('$custom-style-filter') as {
+  text: string
+      }
+
+const normalStyle = computed<CSSProperties>(() => {
+  return customStyle.text ? { color: customStyle.text } : {}
 })
 </script>

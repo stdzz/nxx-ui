@@ -1,5 +1,5 @@
 <template>
-  <el-popper ref="popperRef" :role="role">
+  <el-popper ref="popperRef" :role="role" class="123">
     <el-tooltip-trigger
       :disabled="disabled"
       :trigger="trigger"

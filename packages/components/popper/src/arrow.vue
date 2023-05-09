@@ -1,9 +1,10 @@
 <template>
-  <span ref="arrowRef" :class="ns.e('arrow')" data-popper-arrow="" />
+  <span ref="arrowRef" :class="[ns.e('arrow'), background && 'custom-bg', border && 'custom-br' ]" data-popper-arrow="" />
 </template>
 
 <script lang="ts" setup>
-import { inject, onBeforeUnmount, watch } from 'vue'
+import { inject, onBeforeUnmount, watch, toRefs } from 'vue'
+import type { CustomStyle } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { POPPER_CONTENT_INJECTION_KEY } from '@element-plus/tokens'
 import { popperArrowProps } from './arrow'
@@ -31,6 +32,12 @@ onBeforeUnmount(() => {
   arrowRef.value = undefined
 })
 
+const customStyle = inject('$custom-style-filter') as CustomStyle
+const {
+  border,
+  background,
+} = toRefs(customStyle)
+
 defineExpose({
   /**
    * @description Arrow element
@@ -38,3 +45,12 @@ defineExpose({
   arrowRef,
 })
 </script>
+
+<style scoped>
+.custom-bg::before {
+  background-color: v-bind(background) !important;
+}
+.custom-br::before {
+  border-color: v-bind(border) !important;
+}
+</style>

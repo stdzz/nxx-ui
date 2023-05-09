@@ -50,7 +50,7 @@ $checked-icon: "data:image/svg+xml;utf8,%3Csvg class='icon' width='200' height='
     }
   }
 
-  & .#{$namespace}-select-dropdown__option-item.is-selected {
+  & .#{$namespace}-select-dropdown__option-item.is-selected:not(.radio) {
     &::after {
       @include checked-icon;
     }

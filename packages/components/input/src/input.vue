@@ -30,7 +30,7 @@
         <slot name="prepend" />
       </div>
 
-      <div :class="[nsInput.e('wrapper'), nsInput.is('focus', focused)]">
+      <div :style="[formatterStyle(customStyle, ['background']), customStyle.border && { boxShadow: `0 0 0 1px ${customStyle.border} inset`}]" :class="[nsInput.e('wrapper'), nsInput.is('focus', focused)]">
         <!-- prefix slot -->
         <span v-if="$slots.prefix || prefixIcon" :class="nsInput.e('prefix')">
           <span :class="nsInput.e('prefix-inner')">
@@ -44,7 +44,7 @@
         <input
           :id="inputId"
           ref="input"
-          :class="nsInput.e('inner')"
+          :class="[nsInput.e('inner'), { 'placeholderColor': placeholderColor }]"
           v-bind="attrs"
           :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           :disabled="inputDisabled"
@@ -55,7 +55,7 @@
           :tabindex="tabindex"
           :aria-label="label"
           :placeholder="placeholder"
-          :style="inputStyle"
+          :style="[inputStyle, formatterStyle(customStyle, ['text'])]"
           :form="props.form"
           @compositionstart="handleCompositionStart"
           @compositionupdate="handleCompositionUpdate"
@@ -163,8 +163,11 @@ import {
   toRef,
   useAttrs as useRawAttrs,
   useSlots,
+  inject,
   watch,
 } from 'vue'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import { isClient, useResizeObserver } from '@vueuse/core'
 import { isNil } from 'lodash-unified'
 import { ElIcon } from '@element-plus/components/icon'
@@ -214,6 +217,10 @@ const containerAttrs = computed(() => {
     comboBoxAttrs['aria-expanded'] = rawAttrs['aria-expanded']
   }
   return comboBoxAttrs
+})
+const customStyle = inject('$custom-style-filter') as CustomStyle
+const placeholderColor = computed(() => {
+  return customStyle.text
 })
 
 const attrs = useAttrs({
@@ -509,3 +516,8 @@ defineExpose({
   resizeTextarea,
 })
 </script>
+<style scoped>
+.placeholderColor::placeholder {
+  color: v-bind(placeholderColor) !important;
+}
+</style>

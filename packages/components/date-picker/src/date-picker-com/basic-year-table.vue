@@ -21,7 +21,7 @@
             @keydown.space.prevent.stop="handleYearTableClick"
             @keydown.enter.prevent.stop="handleYearTableClick"
           >
-            <span class="cell">{{ startYear + i * 4 + j }}</span>
+            <span class="cell" :style="[isSelectedCell(startYear + i * 4 + j) ? {} : formatterStyle(customStyle, ['text'])]">{{ startYear + i * 4 + j }}</span>
           </td>
           <td v-else />
         </template>
@@ -31,12 +31,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch, inject } from 'vue'
 import dayjs from 'dayjs'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { rangeArr } from '@element-plus/components/time-picker'
 import { castArray, hasClass } from '@element-plus/utils'
 import { basicYearTableProps } from '../props/basic-year-table'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 
 const datesInYear = (year: number, lang: string) => {
   const firstDay = dayjs(String(year)).locale(lang).startOf('year')
@@ -49,6 +51,7 @@ const props = defineProps(basicYearTableProps)
 const emit = defineEmits(['pick'])
 
 const ns = useNamespace('year-table')
+const customStyle = inject('$custom-style-filter') as CustomStyle
 
 const { t, lang } = useLocale()
 const tbodyRef = ref<HTMLElement>()

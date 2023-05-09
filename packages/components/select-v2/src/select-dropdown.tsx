@@ -1,6 +1,7 @@
 import { computed, defineComponent, inject, ref, unref, watch, nextTick } from 'vue'
 import { get } from 'lodash-unified'
-import { isObject, isUndefined } from '@element-plus/utils'
+import { isObject, isUndefined, formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import {
   DynamicSizeList,
   FixedSizeList,
@@ -10,9 +11,6 @@ import {
 } from '@element-plus/components/checkbox'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import type { CheckboxValueType } from '@element-plus/components/checkbox'
-import {
-  ElButton,
-} from '@element-plus/components/button'
 import { EVENT_CODE } from '@element-plus/constants'
 import GroupItem from './group-item.vue'
 import OptionItem from './option-item.vue'
@@ -22,7 +20,6 @@ import { selectV2InjectionKey } from './token'
 
 import type { ItemProps } from '@element-plus/components/virtual-list'
 import type { Option, OptionItemProps } from './select.types'
-import { TextAlignProperty } from 'csstype'
 
 export default defineComponent({
   name: 'ElSelectDropdown',
@@ -38,6 +35,8 @@ export default defineComponent({
   setup(props, { slots, expose }) {
     const select = inject(selectV2InjectionKey)!
     const ns = useNamespace('select')
+
+    const customStyle = inject('$custom-style-filter') as CustomStyle
     const { t } = useLocale()
     const cachedHeights = ref<Array<number>>([])
       
@@ -191,7 +190,7 @@ export default defineComponent({
       const { index, data, style } = itemProps
       const sized = unref(isSized)
       const { itemSize, estimatedSize } = unref(listProps)
-      const { modelValue, showChecked } = select.props
+      const { modelValue, showChecked, radio } = select.props
       const { onSelect, onHover } = select
       const item = data[index]
       if (item.type === 'Group') {
@@ -228,6 +227,7 @@ export default defineComponent({
       return (
         <OptionItem
           {...itemProps}
+          radio={radio}
           selected={isSelected}
           disabled={item.disabled || isDisabled}
           created={!!item.created}
@@ -334,14 +334,14 @@ export default defineComponent({
               default: (props: ItemProps<any>) => <Item {...props} />,
             }}
           </List>
-          { showChecked ?  <p style={{textAlign: 'center' as TextAlignProperty, marginTop: 0}}>
-            <ElButton onClick={clear} secondary>
+          { showChecked ?  <div class={[ns.b('btn-group')]} style={formatterStyle(customStyle, ['border'])}>
+            <div onClick={clear} class={[ns.b('btn')]} style={formatterStyle(customStyle, ['text'])}>
               { t('el.datepicker.clear')}
-            </ElButton>
-            <ElButton onClick={confirm} secondary>
+            </div>
+            <div onClick={confirm} class={[ns.b('btn')]}  style={formatterStyle(customStyle, ['text', 'border'])}>
               { t('el.datepicker.confirm') }
-            </ElButton>
-          </p> : null}
+            </div>
+          </div> : null}
         </div>
       )
     }

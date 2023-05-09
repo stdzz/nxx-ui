@@ -35,6 +35,7 @@
             nsSelectV2.is('filterable', filterable),
             nsSelectV2.is('disabled', selectDisabled),
           ]"
+          :style="formatterStyle(customStyle, ['background', 'border'])"
         >
           <div v-if="$slots.prefix">
             <slot name="prefix" />
@@ -223,6 +224,7 @@
                 :readonly="!filterable"
                 spellcheck="false"
                 type="text"
+                :style="formatterStyle(customStyle, ['text'])"
                 :unselectable="expanded ? 'on' : undefined"
                 @compositionstart="handleCompositionStart"
                 @compositionupdate="handleCompositionUpdate"
@@ -257,6 +259,7 @@
                 multiple ? modelValue.length === 0 : !hasModelValue
               ),
             ]"
+            :style="formatterStyle(customStyle, ['text'])"
           >
             {{ currentPlaceholder }}
           </span>
@@ -309,7 +312,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, toRefs, vModelText } from 'vue'
+import { defineComponent, provide, reactive, toRefs, vModelText, inject } from 'vue'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import { ClickOutside } from '@element-plus/directives'
 import ElTooltip from '@element-plus/components/tooltip'
 import ElTag from '@element-plus/components/tag'
@@ -356,7 +361,9 @@ export default defineComponent({
       onKeyboardSelect: API.onKeyboardSelect,
     } as any)
 
-    return API
+    const customStyle = inject('$custom-style-filter') as CustomStyle
+
+    return {...API, customStyle, formatterStyle}
   },
 })
 </script>

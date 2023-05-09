@@ -34,6 +34,8 @@ import {
   unref,
   watch,
 } from 'vue'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import { NOOP } from '@vue/shared'
 import { isNil } from 'lodash-unified'
 import { createPopper } from '@popperjs/core'
@@ -96,9 +98,12 @@ const computedReference = computed(
   () => unwrapMeasurableEl(props.referenceEl) || unref(triggerRef)
 )
 
+const customStyle = inject('$custom-style-filter') as CustomStyle
+
 const contentStyle = computed(
-  () => [{ zIndex: unref(contentZIndex) }, props.popperStyle] as any
+  () => [{ zIndex: unref(contentZIndex) }, props.popperStyle, formatterStyle(customStyle,['background', 'border'])] as any
 )
+
 
 const contentClass = computed(() => [
   ns.b(),

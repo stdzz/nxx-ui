@@ -21,6 +21,7 @@
             ns.is('active', key === timePartials[item]),
             ns.is('disabled', disabled),
           ]"
+          :style="[formatterStyle(customStyle, ['text']), key === timePartials[item] ? formatterStyle(customStyle, ['border']) : {}]"
           @click="handleClick(item, { value: key, disabled })"
         >
           <template v-if="item === 'hours'">
@@ -52,7 +53,7 @@
         >
           <arrow-down />
         </el-icon>
-        <ul :class="ns.be('spinner', 'list')">
+        <ul :style="[formatterStyle(customStyle, ['text'])]" :class="ns.be('spinner', 'list')">
           <li
             v-for="(time, key) in arrowControlTimeList[item]"
             :key="key"
@@ -78,7 +79,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, ref, unref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, unref, watch, inject } from 'vue'
 import { debounce } from 'lodash-unified'
 import { vRepeatClick } from '@element-plus/directives'
 import ElScrollbar from '@element-plus/components/scrollbar'
@@ -89,6 +90,8 @@ import { timeUnits } from '../constants'
 import { buildTimeList } from '../utils'
 import { basicTimeSpinnerProps } from '../props/basic-time-spinner'
 import { getTimeLists } from '../composables/use-time-picker'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 
 import type { Ref } from 'vue'
 import type { ScrollbarInstance } from '@element-plus/components/scrollbar'
@@ -97,7 +100,7 @@ import type { TimeList } from '../utils'
 
 const props = defineProps(basicTimeSpinnerProps)
 const emit = defineEmits(['change', 'select-range', 'set-option'])
-
+const customStyle = inject('$custom-style-filter') as CustomStyle
 const ns = useNamespace('time')
 
 const { getHoursList, getMinutesList, getSecondsList } = getTimeLists(

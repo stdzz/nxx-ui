@@ -16,6 +16,7 @@
         <th
           v-for="(week, key) in WEEKS"
           :key="key"
+          :style="[formatterStyle(customStyle, ['text', 'border'])]"
           scope="col"
           :aria-label="t('el.datepicker.weeksFull.' + week)"
         >
@@ -45,7 +46,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, ref, unref, watch } from 'vue'
+import { computed, nextTick, ref, unref, watch, inject } from 'vue'
 import dayjs from 'dayjs'
 import { flatten } from 'lodash-unified'
 import { useLocale, useNamespace } from '@element-plus/hooks'
@@ -53,6 +54,8 @@ import { castArray } from '@element-plus/utils'
 import { basicDateTableProps } from '../props/basic-date-table'
 import { buildPickerTable } from '../utils'
 import ElDatePickerCell from './basic-cell-render'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 
 import type { Dayjs } from 'dayjs'
 import type { DateCell } from '../date-picker.type'
@@ -70,6 +73,7 @@ const currentCellRef = ref<HTMLElement>()
 const lastRow = ref<number>()
 const lastColumn = ref<number>()
 const tableRows = ref<DateCell[][]>([[], [], [], [], [], []])
+const customStyle = inject('$custom-style-filter') as CustomStyle
 
 let focusWithClick = false
 

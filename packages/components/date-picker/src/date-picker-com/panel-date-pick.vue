@@ -8,6 +8,7 @@
         'has-time': showTime,
       },
     ]"
+    :style="[formatterStyle(customStyle, ['background', 'text'])]"
   >
     <div :class="ppNs.e('body-wrapper')">
       <slot name="sidebar" :class="ppNs.e('sidebar')" />
@@ -15,6 +16,7 @@
         <button
           v-for="(shortcut, key) in shortcuts"
           :key="key"
+          :style="[formatterStyle(customStyle, ['text'])]"
           type="button"
           :class="ppNs.e('shortcut')"
           @click="handleShortcutClick(shortcut)"
@@ -63,10 +65,12 @@
             (currentView === 'year' || currentView === 'month') &&
               dpNs.e('header--bordered'),
           ]"
+          :style="[formatterStyle(customStyle, ['border'])]"
         >
           <span :class="dpNs.e('prev-btn')">
             <button
               type="button"
+              :style="[formatterStyle(customStyle, ['text'])]"
               :aria-label="t(`el.datepicker.prevYear`)"
               class="d-arrow-left"
               :class="ppNs.e('icon-btn')"
@@ -77,6 +81,7 @@
             <button
               v-show="currentView === 'date'"
               type="button"
+              :style="[formatterStyle(customStyle, ['text'])]"
               :aria-label="t(`el.datepicker.prevMonth`)"
               :class="ppNs.e('icon-btn')"
               class="arrow-left"
@@ -89,6 +94,7 @@
             role="button"
             :class="dpNs.e('header-label')"
             aria-live="polite"
+            :style="[formatterStyle(customStyle, ['text'])]"
             tabindex="0"
             @keydown.enter="showPicker('year')"
             @click="showPicker('year')"
@@ -98,6 +104,7 @@
             v-show="currentView === 'date'"
             role="button"
             aria-live="polite"
+            :style="[formatterStyle(customStyle, ['text'])]"
             tabindex="0"
             :class="[
               dpNs.e('header-label'),
@@ -111,6 +118,7 @@
             <button
               v-show="currentView === 'date'"
               type="button"
+              :style="[formatterStyle(customStyle, ['text'])]"
               :aria-label="t(`el.datepicker.nextMonth`)"
               :class="ppNs.e('icon-btn')"
               class="arrow-right"
@@ -120,6 +128,7 @@
             </button>
             <button
               type="button"
+              :style="[formatterStyle(customStyle, ['text'])]"
               :aria-label="t(`el.datepicker.nextYear`)"
               :class="ppNs.e('icon-btn')"
               class="d-arrow-right"
@@ -162,10 +171,12 @@
     <div
       v-show="footerVisible && currentView === 'date'"
       :class="ppNs.e('footer')"
+      :style="[formatterStyle(customStyle, ['background', 'border'])]"
     >
       <el-button
         v-show="selectionMode !== 'dates'"
         text
+        :style="[formatterStyle(customStyle, ['text'])]"
         size="small"
         :class="ppNs.e('link-btn')"
         @click="changeToNow"
@@ -174,6 +185,7 @@
       </el-button>
       <el-button
         plain
+        :style="[formatterStyle(customStyle, ['text', 'background', 'border'])]"
         size="small"
         :class="ppNs.e('link-btn')"
         @click="onConfirm"
@@ -200,6 +212,9 @@ import ElButton from '@element-plus/components/button'
 import { ClickOutside as vClickOutside } from '@element-plus/directives'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import ElInput from '@element-plus/components/input'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
+
 import {
   TimePickPanel,
   extractDateFormat,
@@ -243,6 +258,8 @@ const slots = useSlots()
 const { t, lang } = useLocale()
 const pickerBase = inject('EP_PICKER_BASE') as any
 const popper = inject(TOOLTIP_INJECTION_KEY)
+const customStyle = inject('$custom-style-filter') as CustomStyle
+
 const { shortcuts, disabledDate, cellClassName, defaultTime, arrowControl } =
   pickerBase.props
 const defaultValue = toRef(pickerBase.props, 'defaultValue')

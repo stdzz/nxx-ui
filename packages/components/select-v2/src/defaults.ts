@@ -14,6 +14,7 @@ export const SelectProps = {
     default: 'none',
   },
   showChecked: Boolean,
+  radio: Boolean,
   automaticDropdown: Boolean,
   clearable: Boolean,
   clearIcon: {
@@ -117,5 +118,6 @@ export const OptionProps = {
   index: Number,
   style: Object,
   selected: Boolean,
+  radio:Boolean,
   created: Boolean,
 }

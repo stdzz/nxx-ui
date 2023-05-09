@@ -7,6 +7,7 @@
       ns.is('selected', selected),
       ns.is('disabled', disabled),
       ns.is('created', created),
+      radio && 'radio',
       { hover: hovering },
     ]"
     @mouseenter="hoverItem"

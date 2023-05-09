@@ -13,6 +13,24 @@
     padding: 0;
   }
 
+  .#{$namespace}-select-btn-group {
+    border-top: 1px solid getCssVar('border-color');
+    display: flex;
+    justify-content: space-between;
+    height: 32px;
+    .#{$namespace}-select-btn {
+      height: 100%;
+      width: 50%;
+      line-height: 32px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .#{$namespace}-select-btn + .#{$namespace}-select-btn {
+      border-left: 1px solid getCssVar('border-color');
+    }
+  }
+
   @include e(option-item) {
     @include when(selected) {
       &:not(.is-multiple) {
