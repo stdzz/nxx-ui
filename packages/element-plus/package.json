@@ -24,6 +24,7 @@
       "import": "./es/index.mjs",
       "types": "./es/index.d.ts"
     },
+    "./es/css": "./es/css/index.css",
     "./es": "./es/index.mjs",
     "./lib": "./lib/index.js",
     "./es/*.mjs": "./es/*.mjs",

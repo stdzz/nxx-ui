@@ -30,13 +30,6 @@
       right: 0;
     }
 
-    .custom-bg::before {
-      background-color: inherit;
-    }
-
-    .custom-br::before {
-      border-color: inherit;
-    }
   }
 
   @include when(light) {
@@ -48,14 +41,6 @@
       background: getCssVar('bg-color', 'overlay');
       right: 0;
     }
-
-    .custom-bg::before {
-      background-color: inherit;
-    }
-
-    .custom-br::before {
-      border-color: inherit;
-    }
   }
 
   @include when(pure) {
@@ -64,8 +49,8 @@
 
   @include e(arrow) {
     position: absolute;
-    width: 0;
-    height: 0;
+    width: 10px;
+    height: 10px;
     z-index: -1;
 
     &::before {
@@ -77,14 +62,6 @@
       transform: rotate(45deg);
       background: getCssVar('text-color', 'primary');
       box-sizing: border-box;
-    }
-
-    .custom-bg::before {
-      background-color: inherit;
-    }
-
-    .custom-br::before {
-      border-color: inherit;
     }
   }
 
