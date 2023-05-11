@@ -51,7 +51,7 @@ const props = defineProps(basicYearTableProps)
 const emit = defineEmits(['pick'])
 
 const ns = useNamespace('year-table')
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 const { t, lang } = useLocale()
 const tbodyRef = ref<HTMLElement>()

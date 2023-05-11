@@ -61,7 +61,7 @@ const props = defineProps(basicMonthTableProps)
 const emit = defineEmits(['changerange', 'pick', 'select'])
 
 const ns = useNamespace('month-table')
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 const { t, lang } = useLocale()
 const tbodyRef = ref<HTMLElement>()

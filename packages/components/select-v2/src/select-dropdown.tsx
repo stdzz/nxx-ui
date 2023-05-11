@@ -36,7 +36,7 @@ export default defineComponent({
     const select = inject(selectV2InjectionKey)!
     const ns = useNamespace('select')
 
-    const customStyle = inject('$custom-style-filter') as CustomStyle
+    const customStyle = inject('$custom-style-filter', {}) as CustomStyle
     const { t } = useLocale()
     const cachedHeights = ref<Array<number>>([])
       

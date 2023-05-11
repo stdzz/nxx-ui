@@ -112,6 +112,10 @@
       color: getCssVar('text-color', 'placeholder');
     }
 
+    &.placeholderColor::placeholder {
+      color: inherit;
+    }
+
     &::selection {
       outline: none;
     }

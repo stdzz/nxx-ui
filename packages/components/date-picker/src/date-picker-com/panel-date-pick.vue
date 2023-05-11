@@ -258,7 +258,7 @@ const slots = useSlots()
 const { t, lang } = useLocale()
 const pickerBase = inject('EP_PICKER_BASE') as any
 const popper = inject(TOOLTIP_INJECTION_KEY)
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 const { shortcuts, disabledDate, cellClassName, defaultTime, arrowControl } =
   pickerBase.props

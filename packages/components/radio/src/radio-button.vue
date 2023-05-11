@@ -57,7 +57,7 @@ const activeStyle = computed<CSSProperties>(() => {
   }
 })
 
-const customStyle = inject('$custom-style-filter') as {
+const customStyle = inject('$custom-style-filter', {}) as {
   text: string
       }
 

@@ -5,7 +5,7 @@
     :style="{ backgroundColor: color }"
     @click="handleClick"
   >
-    <span :class="ns.e('content')">
+    <span :class="ns.e('content')" :style="formatterStyle(customStyle, ['text'])">
       <slot />
     </span>
     <el-icon v-if="closable" :class="ns.e('close')" @click.stop="handleClose">
@@ -29,10 +29,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 import ElIcon from '@element-plus/components/icon'
 import { Close } from '@element-plus/icons-vue'
-
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import { useNamespace, useSize } from '@element-plus/hooks'
 import { tagEmits, tagProps } from './tag'
 
@@ -56,6 +57,7 @@ const classes = computed(() => {
     ns.is('round', round),
   ]
 })
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 // methods
 const handleClose = (event: MouseEvent) => {

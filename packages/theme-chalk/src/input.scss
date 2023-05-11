@@ -80,6 +80,8 @@
       );
     }
 
+    
+
     &:hover {
       @include inset-input-border(#{getCssVar('input', 'hover-border-color')});
     }
@@ -236,6 +238,11 @@
         map.get($input, 'placeholder-color')
       );
     }
+
+    &.placeholderColor::placeholder {
+      color: inherit;
+    }
+    
 
     // override edge default style
     &[type='password']::-ms-reveal {

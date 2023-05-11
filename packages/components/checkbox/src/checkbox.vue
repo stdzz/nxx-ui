@@ -91,7 +91,7 @@ const {
   onClickRoot,
 } = useCheckbox(props, slots)
 
-const customStyle = inject('$custom-style-filter') as {
+const customStyle = inject('$custom-style-filter', {}) as {
   text: string
       }
 

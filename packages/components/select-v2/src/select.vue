@@ -361,7 +361,7 @@ export default defineComponent({
       onKeyboardSelect: API.onKeyboardSelect,
     } as any)
 
-    const customStyle = inject('$custom-style-filter') as CustomStyle
+    const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
     return {...API, customStyle, formatterStyle}
   },

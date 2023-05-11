@@ -218,7 +218,7 @@ const containerAttrs = computed(() => {
   }
   return comboBoxAttrs
 })
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 const placeholderColor = computed(() => {
   return customStyle.text
 })
@@ -516,8 +516,3 @@ defineExpose({
   resizeTextarea,
 })
 </script>
-<style scoped>
-.placeholderColor::placeholder {
-  color: v-bind(placeholderColor) !important;
-}
-</style>

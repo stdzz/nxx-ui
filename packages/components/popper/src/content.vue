@@ -98,7 +98,7 @@ const computedReference = computed(
   () => unwrapMeasurableEl(props.referenceEl) || unref(triggerRef)
 )
 
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 const contentStyle = computed(
   () => [{ zIndex: unref(contentZIndex) }, props.popperStyle, formatterStyle(customStyle,['background', 'border'])] as any

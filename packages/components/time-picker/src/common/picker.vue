@@ -229,7 +229,7 @@ const nsRange = useNamespace('range')
 
 const { form, formItem } = useFormItem()
 const elPopperOptions = inject('ElPopperOptions', {} as Options)
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 const placeholderColor = computed(() => {
   return customStyle.text
 })
@@ -766,8 +766,3 @@ defineExpose({
   onPick,
 })
 </script>
-<style scoped>
-.placeholderColor::placeholder {
-  color: v-bind(placeholderColor) !important;
-}
-</style>

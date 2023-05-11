@@ -1,7 +1,7 @@
 <template>
   <transition :name="transitionName">
     <div :style="[formatterStyle(customStyle, ['background', 'border'])]"  v-if="actualVisible || visible" :class="ns.b('panel')">
-      <div  :class="[ns.be('panel', 'content'), { 'has-seconds': showSeconds }, { 'has-seconds-border': !!borderColor }]">
+      <div :style="[formatterStyle(customStyle, ['border'])]"  :class="[ns.be('panel', 'content'), { 'has-seconds': showSeconds }, { 'has-seconds-border': !!borderColor }]">
         <time-spinner
           ref="spinner"
           :role="datetimeRole || 'start'"
@@ -62,7 +62,7 @@ const emit = defineEmits(['pick', 'select-range', 'set-picker-option'])
 
 // Injections
 const pickerBase = inject('EP_PICKER_BASE') as any
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 const borderColor = computed(() => {
   return customStyle.border
 })
@@ -183,8 +183,3 @@ emit('set-picker-option', ['handleKeydownInput', handleKeydown])
 emit('set-picker-option', ['getRangeAvailableTime', getRangeAvailableTime])
 emit('set-picker-option', ['getDefaultValue', getDefaultValue])
 </script>
-<style scoped>
-.has-seconds-border::before {
-  border-color: v-bind(borderColor) !important;
-}
-</style>

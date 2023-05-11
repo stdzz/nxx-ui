@@ -12,6 +12,10 @@
     border: solid 1px getCssVar('datepicker-border-color');
     background-color: getCssVar('bg-color', 'overlay');
     box-shadow: getCssVar('box-shadow-light');
+
+    .has-seconds-border::before {
+      border-color: inherit;
+    }
   }
 
   @include e((body, body-wrapper)) {

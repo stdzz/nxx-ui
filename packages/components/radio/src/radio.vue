@@ -59,7 +59,7 @@ const { radioRef, radioGroup, focus, size, disabled, modelValue } = useRadio(
   props,
   emit
 )
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 const normalStyle = computed<CSSProperties>(() => {
   return formatterStyle(customStyle, ['text'])

@@ -100,7 +100,7 @@ import type { TimeList } from '../utils'
 
 const props = defineProps(basicTimeSpinnerProps)
 const emit = defineEmits(['change', 'select-range', 'set-option'])
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 const ns = useNamespace('time')
 
 const { getHoursList, getMinutesList, getSecondsList } = getTimeLists(

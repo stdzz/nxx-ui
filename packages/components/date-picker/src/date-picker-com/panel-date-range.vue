@@ -297,7 +297,7 @@ const emit = defineEmits([
 const unit = 'month'
 // FIXME: fix the type for ep picker
 const pickerBase = inject('EP_PICKER_BASE') as any
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 const {
   disabledDate,

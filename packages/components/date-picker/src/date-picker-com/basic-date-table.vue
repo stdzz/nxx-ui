@@ -73,7 +73,7 @@ const currentCellRef = ref<HTMLElement>()
 const lastRow = ref<number>()
 const lastColumn = ref<number>()
 const tableRows = ref<DateCell[][]>([[], [], [], [], [], []])
-const customStyle = inject('$custom-style-filter') as CustomStyle
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 let focusWithClick = false
 
