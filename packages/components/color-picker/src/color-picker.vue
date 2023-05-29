@@ -32,11 +32,15 @@
               v-model="customInput"
               :validate-event="false"
               size="small"
-              @keyup.enter="handleConfirm"
-              @blur="handleConfirm"
+              @blur="customInputChange"
             />
           </span>
-          <el-button
+          <el-icon @click="getEyeDropper"><EditPen /></el-icon> 
+          <el-radio-group @change="modeChange" v-model="colorMode" size="small">
+            <el-radio-button label="HEX" />
+            <el-radio-button label="RGB" />
+          </el-radio-group>
+          <!-- <el-button
             :class="ns.be('dropdown', 'link-btn')"
             text
             size="small"
@@ -51,7 +55,8 @@
             @click="confirmValue"
           >
             {{ t('el.colorpicker.confirm') }}
-          </el-button>
+          </el-button> -->
+
         </div>
       </div>
     </template>
@@ -112,7 +117,9 @@ import {
   watch,
 } from 'vue'
 import { debounce } from 'lodash-unified'
-import { ElButton } from '@element-plus/components/button'
+// import { ElButton } from '@element-plus/components/button'
+import { ElRadioGroup} from '@element-plus/components/radio'
+import { ElRadioButton } from '@element-plus/components/radio'
 import { ElIcon } from '@element-plus/components/icon'
 import { ClickOutside as vClickOutside } from '@element-plus/directives'
 import {
@@ -127,7 +134,7 @@ import { ElTooltip } from '@element-plus/components/tooltip'
 import { ElInput } from '@element-plus/components/input'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { debugWarn } from '@element-plus/utils'
-import { ArrowDown, Close } from '@element-plus/icons-vue'
+import { ArrowDown, Close, EditPen } from '@element-plus/icons-vue'
 import AlphaSlider from './components/alpha-slider.vue'
 import HueSlider from './components/hue-slider.vue'
 import Predefine from './components/predefine.vue'
@@ -139,13 +146,14 @@ import {
   colorPickerProps,
 } from './color-picker'
 import type { TooltipInstance } from '@element-plus/components/tooltip'
+import { useEyeDropper } from '@vueuse/core'
 
 defineOptions({
   name: 'ElColorPicker',
 })
 const props = defineProps(colorPickerProps)
 const emit = defineEmits(colorPickerEmits)
-
+const { isSupported, open, sRGBHex } = useEyeDropper()
 const { t } = useLocale()
 const ns = useNamespace('color')
 const { formItem } = useFormItem()
@@ -167,7 +175,7 @@ let shouldActiveChange = true
 const color = reactive(
   new Color({
     enableAlpha: props.showAlpha,
-    format: props.colorFormat || '',
+    format: props.colorFormat || props.modelValue?.startsWith('#') ? 'hex' : 'rgb',
     value: props.modelValue,
   })
 ) as Color
@@ -175,6 +183,11 @@ const color = reactive(
 const showPicker = ref(false)
 const showPanelColor = ref(false)
 const customInput = ref('')
+const getEyeDropper = () => {
+  if (!isSupported) return
+  open()
+}
+const colorMode = ref(props.modelValue?.startsWith('#') ? 'HEX' : 'RGB')
 
 const displayedColor = computed(() => {
   if (!props.modelValue && !showPanelColor.value) {
@@ -206,6 +219,17 @@ function displayedRgb(color: Color, showAlpha: boolean) {
   return showAlpha
     ? `rgba(${r}, ${g}, ${b}, ${color.get('alpha') / 100})`
     : `rgb(${r}, ${g}, ${b})`
+}
+
+const modeChange = (val: string | number | boolean) => {
+  color.format = (val as string).toLowerCase()
+  handleConfirm()
+  customInput.value = color.value
+}
+
+function customInputChange() {
+  handleConfirm()
+  customInput.value = color.value
 }
 
 function setShowPicker(value: boolean) {
@@ -248,7 +272,7 @@ function confirmValue() {
   if (props.validateEvent) {
     formItem?.validate('change').catch((err) => debugWarn(err))
   }
-  debounceSetShowPicker(false)
+  // debounceSetShowPicker(false)
   // check if modelValue change, if not change, then reset color.
   nextTick(() => {
     const newColor = new Color({
@@ -290,12 +314,24 @@ watch(
   }
 )
 
+watch(sRGBHex, (newValue) => {
+  color.fromString(newValue)
+  customInput.value = color.value
+})
+
 watch(
   () => currentColor.value,
   (val) => {
     customInput.value = val
     shouldActiveChange && emit('activeChange', val)
     shouldActiveChange = true
+  }
+)
+
+watch(
+  () => customInput.value,
+  () => {
+    confirmValue()
   }
 )
 

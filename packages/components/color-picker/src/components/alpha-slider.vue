@@ -16,6 +16,14 @@
         top: thumbTop + 'px',
       }"
     />
+    <div :class="[ns.e('input')]">
+      <el-input-number
+          v-model="customInput"
+          :min="0" :max="100"
+          :validate-event="false"
+          size="small"
+        />
+    </div>
   </div>
 </template>
 
@@ -30,6 +38,7 @@ import {
 } from 'vue'
 import { getClientXY } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
+import { ElInputNumber } from '@element-plus/components/input-number'
 import { draggable } from '../utils/draggable'
 
 import type { PropType } from 'vue'
@@ -37,6 +46,7 @@ import type Color from '../utils/color'
 
 export default defineComponent({
   name: 'ElColorAlphaSlider',
+  components: { ElInputNumber },
   props: {
     color: {
       type: Object as PropType<Color>,
@@ -50,6 +60,7 @@ export default defineComponent({
   setup(props) {
     const ns = useNamespace('color-alpha-slider')
 
+
     const instance = getCurrentInstance()!
     // ref
     const thumb = shallowRef<HTMLElement>()
@@ -57,6 +68,7 @@ export default defineComponent({
 
     // data
     const thumbLeft = ref(0)
+    const customInput = ref(0)
     const thumbTop = ref(0)
     const background = ref<string>()
 
@@ -64,6 +76,16 @@ export default defineComponent({
       () => props.color.get('alpha'),
       () => {
         update()
+      }
+    )
+
+    watch(
+      customInput,
+      (val) => {
+        props.color.set(
+          'alpha',
+          Math.round(val)
+        )
       }
     )
     watch(
@@ -80,12 +102,23 @@ export default defineComponent({
       if (props.vertical) return 0
       const el = instance.vnode.el
       const alpha = props.color.get('alpha')
-
       if (!el) return 0
       return Math.round(
         (alpha * (el.offsetWidth - thumb.value.offsetWidth / 2)) / 100
       )
     }
+
+    function getCustomValue() {
+      if (!thumb.value) return 0
+
+      if (props.vertical) return 0
+      const el = instance.vnode.el
+      const alpha = props.color.get('alpha')
+      if (!el) return 0
+      return Math.round(alpha)
+    }
+
+
 
     function getThumbTop() {
       if (!thumb.value) return 0
@@ -154,6 +187,7 @@ export default defineComponent({
 
     function update() {
       thumbLeft.value = getThumbLeft()
+      customInput.value = getCustomValue()
       thumbTop.value = getThumbTop()
       background.value = getBackground()
     }
@@ -184,6 +218,7 @@ export default defineComponent({
       background,
       handleClick,
       update,
+      customInput,
       ns,
     }
   },
