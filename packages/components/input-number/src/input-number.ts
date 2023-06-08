@@ -23,6 +23,11 @@ export const inputNumberProps = buildProps({
     type: Number,
     default: Number.POSITIVE_INFINITY,
   },
+  effect: {
+    type: String,
+    values: ['dark', 'light', 'plain'],
+    default: 'light',
+  },
   min: {
     type: Number,
     default: Number.NEGATIVE_INFINITY,

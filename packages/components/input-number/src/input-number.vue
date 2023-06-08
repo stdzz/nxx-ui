@@ -3,6 +3,7 @@
     :class="[
       ns.b(),
       ns.m(inputNumberSize),
+      ns.m(effect),
       ns.is('disabled', inputNumberDisabled),
       ns.is('without-controls', !controls),
       ns.is('controls-right', controlsAtRight),
@@ -46,6 +47,7 @@
       :disabled="inputNumberDisabled"
       :size="inputNumberSize"
       :max="max"
+      :effect="effect"
       :min="min"
       :name="name"
       :label="label"

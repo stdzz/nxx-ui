@@ -58,12 +58,21 @@ $dropdown-divider-width: 1px !default;
     @include set-component-css-var('dropdown', $dropdown);
 
     // using attributes selector to override
+    
 
     @include picker-popper(
       getCssVar('bg-color', 'overlay'),
       1px solid getCssVar('border-color-light'),
       getCssVar('dropdown-menu-box-shadow')
     );
+
+    @include when(dark) {
+      @include picker-popper(
+        #292929,
+        1px solid rgba(255, 255, 255, 0.15),
+        getCssVar('dropdown-menu-box-shadow')
+      );
+    }
 
     .#{$namespace}-dropdown-menu {
       border: none;
@@ -186,6 +195,21 @@ $dropdown-menu-padding-vertical: map.merge(
     @include when(disabled) {
       cursor: not-allowed;
       color: getCssVar('text-color-disabled');
+    }
+  }
+
+
+  &.#{$namespace}-dropdown--dark {
+    background-color: #292929;
+    @include e(item) {
+      color: #A6A6A6;
+      &:not(.is-disabled):focus {
+        background-color: rgba(255, 255, 255, 0.1);;
+        color: #A6A6A6;;
+      }
+      @include m(divided) {
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+      }
     }
   }
 

@@ -33,4 +33,18 @@
       font-weight: bold;
     }
   }
+
+  &.#{$namespace}-select--dark {
+    @include e(item) {
+      color: #fff;
+      &.hover,
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &.selected {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
 }

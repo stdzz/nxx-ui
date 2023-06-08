@@ -60,7 +60,17 @@
       map.get($select-dropdown, 'border'),
       map.get($select-dropdown, 'shadow')
     );
+
+    @include when(dark) {
+      background: #292929;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      .#{$namespace}-popper__arrow::before {
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+    }
   }
+
+  
 
   .#{$namespace}-select-tags-wrapper {
     &.has-prefix {

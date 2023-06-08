@@ -18,6 +18,11 @@ export const checkboxProps = {
   indeterminate: Boolean,
   disabled: Boolean,
   checked: Boolean,
+  effect: {
+    type: String,
+    values: ['dark', 'light', 'plain'],
+    default: 'light',
+  },
   name: {
     type: String,
     default: undefined,

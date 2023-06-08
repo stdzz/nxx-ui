@@ -104,6 +104,10 @@ export const dropdownItemProps = buildProps({
 } as const)
 
 export const dropdownMenuProps = buildProps({
+  effect: {
+    ...useTooltipContentProps.effect,
+    default: 'light',
+  },
   onKeydown: { type: definePropType<(e: KeyboardEvent) => void>(Function) },
 })
 

@@ -6,6 +6,11 @@ import type Radio from './radio.vue'
 
 export const radioPropsBase = buildProps({
   size: useSizeProp,
+  effect: {
+    type: String,
+    values: ['dark', 'light', 'plain'],
+    default: 'light',
+  },
   disabled: Boolean,
   label: {
     type: [String, Number, Boolean],

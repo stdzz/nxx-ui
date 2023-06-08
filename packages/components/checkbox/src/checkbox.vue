@@ -4,6 +4,7 @@
     :class="[
       ns.b(),
       ns.m(checkboxSize),
+      ns.m(effect),
       ns.is('disabled', isDisabled),
       ns.is('bordered', border),
       ns.is('checked', isChecked),

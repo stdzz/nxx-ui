@@ -311,7 +311,7 @@ export default defineComponent({
       
       return (
         <div class={[ns.b('dropdown'), ns.is('multiple', multiple)]}>
-          { showChecked ?  <div class='el-select-dropdown__option-item'>
+          { showChecked ?  <div class={ns.b('dropdown__option-item')}>
           <ElCheckbox
             modelValue={checkAll.value}
             indeterminate={isIndeterminate.value}

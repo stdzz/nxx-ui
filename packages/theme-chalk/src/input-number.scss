@@ -80,6 +80,42 @@
     border-right: getCssVar('border');
   }
 
+  @include m(dark) {
+    .#{$namespace}-input-number__decrease,
+    .#{$namespace}-input-number__increase {
+      background: #292929;
+      color: #fff;
+      border-color: #5f5f5f;
+      &:hover {
+        color: getCssVar('color-primary');
+        background-color: rgba(#3370FF, 0.2);
+      }
+    }
+    &.is-controls-right {
+      .#{$namespace}-input-number__decrease,
+      .#{$namespace}-input-number__increase {
+        border-color: #5f5f5f !important;
+      }
+
+      .#{$namespace}-input-number__decrease:not(.is-disabled),
+      .#{$namespace}-input-number__increase:not(.is-disabled) {
+        &:hover {
+          color: getCssVar('color-primary');
+          background-color: rgba(#3370FF, 0.2);
+    
+          & ~ .#{$namespace}-input:not(.is-disabled) .#{$namespace}-input__wrapper {
+            box-shadow: 0 0 0 1px
+              var(
+                #{getCssVarName('input', 'focus-border-color')},
+                map.get($input, 'focus-border-color')
+              )
+              inset !important;
+          }
+        }
+      }
+    }
+  }
+
   @include when(disabled) {
     @include e((increase, decrease)) {
       border-color: getCssVar('disabled-border-color');

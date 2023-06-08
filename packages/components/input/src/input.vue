@@ -5,6 +5,7 @@
     :class="[
       type === 'textarea' ? nsTextarea.b() : nsInput.b(),
       nsInput.m(inputSize),
+      nsInput.m(effect),
       nsInput.is('disabled', inputDisabled),
       nsInput.is('exceed', inputExceed),
       {

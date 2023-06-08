@@ -16,10 +16,10 @@
         @focus="handleFocus"
         @blur="focusing = false"
       >
-        <slot name="title">{{ title }}</slot>
         <el-icon :class="arrowKls">
-          <arrow-right />
+          <CaretRight />
         </el-icon>
+        <slot name="title">{{ title }}</slot>
       </div>
     </div>
     <el-collapse-transition>
@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import ElCollapseTransition from '@element-plus/components/collapse-transition'
 import ElIcon from '@element-plus/components/icon'
-import { ArrowRight } from '@element-plus/icons-vue'
+import { CaretRight } from '@element-plus/icons-vue'
 import { collapseItemProps } from './collapse-item'
 import { useCollapseItem, useCollapseItemDOM } from './use-collapse-item'
 

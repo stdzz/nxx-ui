@@ -55,6 +55,7 @@ export const useCollapseItemDOM = (
 
   const rootKls = computed(() => [
     ns.b('item'),
+    ns.m(props.effect),
     ns.is('active', unref(isActive)),
     ns.is('disabled', props.disabled),
   ])

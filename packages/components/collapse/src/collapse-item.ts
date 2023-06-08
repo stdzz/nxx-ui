@@ -7,6 +7,11 @@ export const collapseItemProps = buildProps({
     type: String,
     default: '',
   },
+  effect: {
+    type: String,
+    values: ['dark', 'light', 'plain'],
+    default: 'light',
+  },
   name: {
     type: definePropType<CollapseActiveName>([String, Number]),
     default: () => generateId(),

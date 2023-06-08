@@ -46,6 +46,11 @@ export const inputProps = buildProps({
     type: String,
     default: 'text',
   },
+  effect: {
+    type: String,
+    values: ['dark', 'light', 'plain'],
+    default: 'light',
+  },
   /**
    * @description control the resizability
    */

@@ -11,6 +11,11 @@ export interface QueryChangeCtx {
 export interface SelectContext {
   props: {
     multiple?: boolean
+    effect: {
+      type: String,
+      values: ['dark', 'light', 'plain'],
+      default: 'light',
+    },
     multipleLimit?: number
     valueKey?: string
     modelValue?: string | number | unknown | unknown[]

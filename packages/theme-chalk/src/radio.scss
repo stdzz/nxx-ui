@@ -39,6 +39,19 @@ $radio-font-size: map.merge(
     }
   }
 
+  @include m(dark) {
+    @include e(label) {
+      color: #fff;
+    }
+    @include e(input) {
+      @include when(checked) {
+        & + .#{$namespace}-radio__label {
+          color: #fff;
+        }
+      }
+    }
+  }
+
   @include when(bordered) {
     padding: 0 map.get($checkbox-bordered-padding-right, 'default')-$border-width
       0 map.get($checkbox-bordered-padding-left, 'default')-$border-width;

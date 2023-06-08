@@ -200,6 +200,32 @@
     }
   }
 
+
+  @include m(dark) {
+    .#{$namespace}-input__wrapper {
+      background-color: #292929;
+      @include inset-input-border( #5f5f5f);
+      &:hover {
+        @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
+      }
+  
+      @include when(focus) {
+        @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
+      }
+    }
+    .#{$namespace}-input__inner {
+      color: #FFFFFF
+    }
+
+    .#{$namespace}-input-group__prepend {
+      box-shadow: 1px 0 0 0 #5f5f5f inset, 0 1px 0 0 #5f5f5f inset, 0 -1px 0 0 #5f5f5f inset;
+      color: #757575;
+      background-color: #292929;
+    }
+
+    
+  }
+
   @include e(inner) {
     // use map.get as default value for date picker range
     @include set-css-var-value(
@@ -248,6 +274,12 @@
     &[type='password']::-ms-reveal {
       display: none;
     }
+  }
+
+  .#{$namespace}-select__prefix--dark {
+    color: #757575;
+    border-right: 1px solid #5f5f5f;
+    padding-right: 11px;
   }
 
   @each $slot in (prefix, suffix) {
@@ -388,7 +420,7 @@
     justify-content: center;
     min-height: 100%;
     border-radius: getCssVar('input-border-radius');
-    padding: 0 20px;
+    padding: 0 11px;
     white-space: nowrap;
 
     &:focus {

@@ -176,6 +176,7 @@
             type="text"
             :placeholder="currentPlaceholder"
             :name="name"
+            :effect="effect"
             :autocomplete="autocomplete"
             :size="selectSize"
             :disabled="selectDisabled"
@@ -198,6 +199,7 @@
           >
             <template v-if="$slots.prefix" #prefix>
               <div
+                :class="nsSelect.e(`prefix--${effect}`)"
                 style="
                   height: 100%;
                   display: flex;
@@ -496,7 +498,7 @@ export default defineComponent({
     } = toRefs(states);
 
     const wrapperKls = computed(() => {
-      const classList = [nsSelect.b()];
+      const classList = [nsSelect.b(), nsSelect.m(props.effect)];
       const _selectSize = unref(selectSize);
       if (_selectSize) {
         classList.push(nsSelect.m(_selectSize));

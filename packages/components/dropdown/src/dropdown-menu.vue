@@ -73,7 +73,7 @@ export default defineComponent({
     )!
 
     const dropdownKls = computed(() => {
-      return [ns.b('menu'), ns.bm('menu', size?.value)]
+      return [ns.b('menu'), ns.bm('menu', size?.value), ns.m(props.effect)]
     })
 
     const dropdownListWrapperRef = composeRefs(

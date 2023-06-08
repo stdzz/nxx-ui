@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="[ns.b('dropdown'), ns.is('multiple', isMultiple), popperClass]"
+    :class="[ns.b('dropdown'), ns.m(effect), ns.is('multiple', isMultiple), popperClass]"
     :style="{ [isFitInputWidth ? 'width' : 'minWidth']: minWidth }"
   >
     <slot />
@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, onMounted, ref } from 'vue'
+import { computed, defineComponent, inject, onMounted, ref, ComputedRef } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
 import { useNamespace } from '@element-plus/hooks'
 import { selectKey } from './token'
@@ -26,6 +26,7 @@ export default defineComponent({
     const popperClass = computed(() => select.props.popperClass)
     const isMultiple = computed(() => select.props.multiple)
     const isFitInputWidth = computed(() => select.props.fitInputWidth)
+    const effect = computed(() => select.props.effect) as unknown as ComputedRef<string>
     const minWidth = ref('')
 
     function updateMinWidth() {
@@ -44,6 +45,7 @@ export default defineComponent({
       minWidth,
       popperClass,
       isMultiple,
+      effect,
       isFitInputWidth,
     }
   },

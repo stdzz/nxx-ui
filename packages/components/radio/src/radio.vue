@@ -5,6 +5,7 @@
       ns.is('disabled', disabled),
       ns.is('focus', focus),
       ns.is('bordered', border),
+      ns.m(effect),
       ns.is('checked', modelValue === label),
       ns.m(size),
     ]"

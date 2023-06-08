@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, onBeforeUnmount, watch, toRefs } from "vue";
+import { inject, onBeforeUnmount, watch, toRefs, reactive } from "vue";
 import { useNamespace } from "@element-plus/hooks";
 import { POPPER_CONTENT_INJECTION_KEY } from "@element-plus/tokens";
 import { popperArrowProps } from "./arrow";
@@ -36,7 +36,7 @@ onBeforeUnmount(() => {
   arrowRef.value = undefined;
 });
 
-const customStyle = inject("$custom-style-filter", {}) as CustomStyle;
+const customStyle = inject("$custom-style-filter", reactive({})) as CustomStyle;
 const { border, background } = toRefs(customStyle);
 
 defineExpose({
