@@ -50,6 +50,19 @@ $radio-font-size: map.merge(
         }
       }
     }
+
+    @include when(disabled) {
+      @include e(label) {
+        color: #5F5F5F !important;
+      }
+      @include e(input) {
+        @include when(checked) {
+          & + .#{$namespace}-radio__label {
+            color: #5F5F5F;
+          }
+        }
+      }
+    }
   }
 
   @include when(bordered) {

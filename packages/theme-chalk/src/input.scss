@@ -200,32 +200,6 @@
     }
   }
 
-
-  @include m(dark) {
-    .#{$namespace}-input__wrapper {
-      background-color: #292929;
-      @include inset-input-border( #5f5f5f);
-      &:hover {
-        @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
-      }
-  
-      @include when(focus) {
-        @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
-      }
-    }
-    .#{$namespace}-input__inner {
-      color: #FFFFFF
-    }
-
-    .#{$namespace}-input-group__prepend {
-      box-shadow: 1px 0 0 0 #5f5f5f inset, 0 1px 0 0 #5f5f5f inset, 0 -1px 0 0 #5f5f5f inset;
-      color: #757575;
-      background-color: #292929;
-    }
-
-    
-  }
-
   @include e(inner) {
     // use map.get as default value for date picker range
     @include set-css-var-value(
@@ -279,6 +253,12 @@
   .#{$namespace}-select__prefix--dark {
     color: #757575;
     border-right: 1px solid #5f5f5f;
+    padding-right: 11px;
+  }
+
+  .#{$namespace}-select__prefix--light {
+    color: #8d9199;
+    border-right: 1px solid #BBBFC4;
     padding-right: 11px;
   }
 
@@ -366,6 +346,49 @@
 
     .#{$namespace}-input__icon {
       cursor: not-allowed;
+    }
+  }
+
+  @include m(dark) {
+    .#{$namespace}-input__wrapper {
+      background-color: #292929;
+      @include inset-input-border( #5f5f5f);
+      &:hover {
+        @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
+      }
+  
+      @include when(focus) {
+        @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
+      }
+    }
+    .#{$namespace}-input__inner {
+      color: #FFFFFF
+    }
+
+    .#{$namespace}-input-group__prepend {
+      box-shadow: 1px 0 0 0 #5f5f5f inset, 0 1px 0 0 #5f5f5f inset, 0 -1px 0 0 #5f5f5f inset;
+      color: #757575;
+      background-color: #292929;
+    }
+
+    @include when(disabled)  {
+      .#{$namespace}-input__wrapper {
+        @include inset-input-border(#5F5F5F);
+        background-color: #373737;
+        &:hover {
+          @include inset-input-border(#5F5F5F);
+        }
+      }
+  
+      .#{$namespace}-input__inner {
+        color: #5F5F5F;
+        -webkit-text-fill-color: #5F5F5F;
+        cursor: not-allowed;
+  
+        &::placeholder {
+          color: #5F5F5F;
+        }
+      }
     }
   }
 

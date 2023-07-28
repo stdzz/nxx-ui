@@ -53,6 +53,11 @@ $checkbox-bordered-input-width: map.merge(
 
   @include m(dark) {
     color: #fff;
+    @include when(disabled) {
+      @include e(label) {
+        color: #5F5F5F !important;
+      }
+    }
   }
 
   @include when(bordered) {

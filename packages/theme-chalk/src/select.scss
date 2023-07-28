@@ -154,7 +154,7 @@
       }
     }
 
-    &.is-disabled {
+    &.is-disabled:not(.#{$namespace}-input--dark) {
       & .#{$namespace}-input__wrapper {
         cursor: not-allowed;
 
