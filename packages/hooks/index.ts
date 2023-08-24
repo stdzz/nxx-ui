@@ -28,3 +28,5 @@ export * from './use-z-index'
 export * from './use-floating'
 export * from './use-cursor'
 export * from './use-ordered-children'
+export * from './use-size'
+

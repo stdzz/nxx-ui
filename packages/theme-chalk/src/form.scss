@@ -179,6 +179,11 @@ $form-item-label-top-margin-bottom: map.merge(
     line-height: 1;
     padding-top: #{map.get($form-item-error-padding-top, 'default')};
     position: absolute;
+    font-family: PingFang SC;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
     top: 100%;
     left: 0;
 

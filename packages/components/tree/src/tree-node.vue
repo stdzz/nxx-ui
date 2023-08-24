@@ -4,9 +4,11 @@
     ref="node$"
     :class="[
       ns.b('node'),
+      ns.is('effect', effect === 'dark'),
       ns.is('expanded', expanded),
       ns.is('current', node.isCurrent),
       ns.is('hidden', !node.visible),
+      ns.is('menu', menu),
       ns.is('focusable', !node.disabled),
       ns.is('checked', !node.disabled && node.checked),
       getNodeClass(node),
@@ -72,6 +74,7 @@
           :render-content="renderContent"
           :render-after-expand="renderAfterExpand"
           :menu="menu"
+          :effect="effect"
           :show-checkbox="showCheckbox"
           :node="child"
           :accordion="accordion"
@@ -138,6 +141,10 @@ export default defineComponent({
     menu: {
       type: Boolean,
       default: false,
+    },
+    effect: {
+      type: String as PropType<"light" | "dark" | string>,
+      default: "light",
     },
   },
   emits: ['node-expand'],

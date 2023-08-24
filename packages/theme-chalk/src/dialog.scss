@@ -60,30 +60,24 @@
 
   @include e(headerbtn) {
     position: absolute;
-    top: 25px;
-    right: 25px;
-    padding: 0;
-    width: 15px;
-    height: 15px;
+    top: 24px;
+    right: 24px;
     background: transparent;
     border: none;
     outline: none;
+    width: 28px;
+    height: 28px;
     cursor: pointer;
-    font-size: var(
-      #{getCssVarName('message-close-size')},
-      map.get($message, 'close-size')
-    );
-
-    .#{$namespace}-dialog__close {
-      color: getCssVar('color', 'info');
-      font-size: inherit;
-    }
-
+    color: #646A73;
+    font-size: 20px;
+    padding: 4px;
+    border-radius: 4px;
     &:focus,
     &:hover {
-      .#{$namespace}-dialog__close {
-        color: getCssVar('color', 'primary');
-      }
+      background: rgba(31, 35, 41, 0.10);
+    }
+    &:active {
+      background: rgba(31, 35, 41, 0.20);
     }
   }
 

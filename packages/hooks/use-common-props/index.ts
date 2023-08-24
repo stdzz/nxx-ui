@@ -1,17 +1,10 @@
 import { computed, inject, ref, unref } from 'vue'
 import { formContextKey, formItemContextKey } from '@element-plus/tokens'
-import { buildProp } from '@element-plus/utils'
-import { componentSizes } from '@element-plus/constants'
 import { useProp } from '../use-prop'
 import { useGlobalConfig } from '../use-global-config'
 import type { ComponentSize } from '@element-plus/constants'
 import type { MaybeRef } from '@vueuse/core'
 
-export const useSizeProp = buildProp({
-  type: String,
-  values: componentSizes,
-  required: false,
-} as const)
 
 export const useSize = (
   fallback?: MaybeRef<ComponentSize | undefined>,

@@ -95,7 +95,7 @@
 
   &:hover:not(.#{$namespace}-select--disabled) {
     .#{$namespace}-input__wrapper {
-      box-shadow: 0 0 0 1px getCssVar('select-border-color-hover') inset;
+      box-shadow: 0 0 0 1px getCssVar('select-input-focus-border-color') inset;
     }
   }
 
@@ -125,10 +125,14 @@
 
     & .#{$namespace}-select__caret {
       color: getCssVar('select-input-color');
-      font-size: getCssVar('select-input-font-size');
+      font-size: 16px;
       transition: transform getCssVar('transition-duration');
       transform: rotateZ(0deg);
       cursor: pointer;
+
+      &:hover {
+        color: getCssVar('select-input-focus-border-color');
+      }
 
       @include when(reverse) {
         transform: rotateZ(-180deg);

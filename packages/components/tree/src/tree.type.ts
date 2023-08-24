@@ -50,6 +50,11 @@ export declare interface TreeStoreOptions {
   lazy: boolean
   props: TreeOptionProps
   load: LoadFunction
+  effect: {
+    type: String,
+    values: ['dark', 'light', 'plain'],
+    default: 'light',
+  }
   currentNodeKey: TreeKey
   checkStrictly: boolean
   checkDescendants: boolean

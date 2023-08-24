@@ -49,15 +49,6 @@
 
     &:hover {
       color: getCssVar('color-primary');
-
-      & ~ .#{$namespace}-input:not(.is-disabled) .#{$namespace}-input_wrapper {
-        box-shadow: 0 0 0 1px
-          var(
-            #{getCssVarName('input', 'focus-border-color')},
-            map.get($input, 'focus-border-color')
-          )
-          inset;
-      }
     }
 
     &.is-disabled {
@@ -109,14 +100,6 @@
           &::after {
             display: block;
           }
-          & ~ .#{$namespace}-input:not(.is-disabled) .#{$namespace}-input__wrapper {
-            box-shadow: 0 0 0 1px
-              var(
-                #{getCssVarName('input', 'focus-border-color')},
-                map.get($input, 'focus-border-color')
-              )
-              inset !important;
-          }
         }
       }
 
@@ -127,6 +110,14 @@
         &:hover {
           color: getCssVar('color-primary');
           background-color: rgba(#3370FF, 0.2);
+          & ~ .#{$namespace}-input:not(.is-disabled) .#{$namespace}-input__wrapper {
+            box-shadow: 0 0 0 1px
+              var(
+                #{getCssVarName('input', 'focus-border-color')},
+                map.get($input, 'focus-border-color')
+              )
+              inset !important;
+          }
         }
       }
 
@@ -208,6 +199,14 @@
       .#{$namespace}-input-number__increase:not(.is-disabled) {
         &:hover {
           background-color: #fff;
+          & ~ .#{$namespace}-input:not(.is-disabled) .#{$namespace}-input__wrapper {
+            box-shadow: 0 0 0 1px
+              var(
+                #{getCssVarName('input', 'focus-border-color')},
+                map.get($input, 'focus-border-color')
+              )
+              inset !important;
+          }
         }
       }
     }
@@ -229,6 +228,14 @@
         background-color: #fff;
         &:hover {
           background-color: #ebf1ff;
+          & ~ .#{$namespace}-input:not(.is-disabled) .#{$namespace}-input__wrapper {
+            box-shadow: 0 0 0 1px
+              var(
+                #{getCssVarName('input', 'focus-border-color')},
+                map.get($input, 'focus-border-color')
+              )
+              inset !important;
+          }
         }
       }
     }

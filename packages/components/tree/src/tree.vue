@@ -3,6 +3,7 @@
     ref="el$"
     :class="[
       ns.b(),
+      ns.is('effect', effect === 'dark'),
       ns.is('dragging', !!dragState.draggingNode),
       ns.is('drop-not-allow', !dragState.allowDrop),
       ns.is('drop-inner', dragState.dropType === 'inner'),
@@ -16,6 +17,7 @@
       :node="child"
       :props="props"
       :menu="menu"
+      :effect="effect"
       :accordion="accordion"
       :render-after-expand="renderAfterExpand"
       :show-checkbox="showCheckbox"
@@ -74,6 +76,10 @@ export default defineComponent({
     },
     emptyText: {
       type: String,
+    },
+    effect: {
+      type: String as PropType<"light" | "dark" | string>,
+      default: "light",
     },
     renderAfterExpand: {
       type: Boolean,

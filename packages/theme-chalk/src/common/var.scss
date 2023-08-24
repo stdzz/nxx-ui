@@ -101,7 +101,7 @@ $text-color: map.merge(
     'primary': #303133,
     'regular': #1F2329,
     'secondary': #909399,
-    'placeholder': #BBBFC4,
+    'placeholder': #8D9199,
     'ban': #EFF0F1,
     'disabled': #c0c4cc,
   ),
@@ -111,7 +111,7 @@ $text-color: map.merge(
 $border-color: () !default;
 $border-color: map.merge(
   (
-    '': #dcdfe6,
+    '': #BBBFC4,
     'light': #e4e7ed,
     'lighter': rgba(31, 35, 41, 0.15),
     'extra-light': #BBBFC4,
