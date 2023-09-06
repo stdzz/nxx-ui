@@ -373,7 +373,12 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
     }
   }
 
+  
+
   @include when(custom) {
+    .#{$namespace}-color-picker__mask {
+      height: 24px;
+    }
     .#{$namespace}-color-picker__trigger {
       justify-content: flex-start;
       box-sizing: border-box !important;
@@ -396,6 +401,8 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
         margin-left: 39px;
         display: inline-flex !important;
       }
+
+      
     }
   }
 }

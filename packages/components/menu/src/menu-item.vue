@@ -52,7 +52,6 @@ import { throwError } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import useMenu from './use-menu'
 import { menuItemEmits, menuItemProps } from './menu-item'
-
 import type { MenuItemRegistered, MenuProvider, SubMenuProvider } from './types'
 
 const COMPONENT_NAME = 'ElMenuItem'

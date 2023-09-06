@@ -270,10 +270,7 @@
       flex-wrap: nowrap;
       height: 100%;
       text-align: center;
-      color: var(
-        #{getCssVarName('input-icon-color')},
-        map.get($input, 'icon-color')
-      );
+      color: #646A73;
       transition: all getCssVar('transition-duration');
       pointer-events: none;
     }

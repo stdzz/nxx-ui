@@ -42,10 +42,15 @@
   @include when(effect) {
     background: #292929;
     .#{$namespace}-tree-node__content {
+      background-color: #292929;
       &:hover,
       &:focus {
         background-color: rgba(255, 255, 255, 0.1) !important;
       }
+    }
+
+    .#{$namespace}-tree-node:focus > .#{$namespace}-tree-node__content {
+      background-color: rgba(255, 255, 255, 0.1) !important;
     }
   }
 }
@@ -53,17 +58,19 @@
 @include b(tree-node) {
   white-space: nowrap;
   outline: none;
+  @include when(effect) {
+    background: #292929;
+    &:hover{
+      background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+  }
  
 
-  &:not(.is-effect):focus {
+  &.is-effect:focus {
     /* focus */
     > .#{$namespace}-tree-node__content {
-      position: relative;
-      color: getCssVar('color-primary');
-      background-color: getCssVar('tree-node-hover-bg-color');
+      background-color: rgba(255, 255, 255, 0.1) !important;
     }
-
-    
   }
 
   @include when(drop-inner) {
@@ -187,6 +194,7 @@
   &.is-menu {
     & > :nth-child(1) {
       background: rgba(51, 112, 255, 0.1);
+      color: getCssVar('color-primary');
       border-radius: 4px;
       font-weight: 500;
     }

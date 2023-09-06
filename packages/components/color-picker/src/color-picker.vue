@@ -205,6 +205,7 @@ const modeChange = (val: string | number | boolean) => {
 function customInputChange() {
   handleConfirm()
   customInput.value = color.value
+  confirmValue()
 }
 
 const buttonAriaLabel = computed<string | undefined>(() => {
@@ -389,4 +390,3 @@ defineExpose({
   hide,
 })
 </script>
-@element-plus/components/form

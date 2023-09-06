@@ -67,6 +67,22 @@ export default defineComponent({
       }
     )
 
+    watch(
+      () => select.props.modelValue,
+      (val) => {
+        if (showChecked) {
+          props.data.forEach((element: any) => {
+            element.checked = val.includes(get(element, valueKey))
+          });
+          const checkedCount = val.length
+          checkAll.value = checkedCount === size.value
+          isIndeterminate.value = checkedCount > 0 && checkedCount < size.value
+        }
+        select.popper.value?.updatePopper?.()
+      },
+      { deep: true }
+    )
+
     if (showChecked) {
       props.data.forEach((element: any) => {
         element.checked = modelValue.includes(get(element, valueKey))

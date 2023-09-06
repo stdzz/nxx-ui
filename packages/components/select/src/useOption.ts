@@ -60,6 +60,8 @@ export function useOption(props, states) {
       return arr && arr.includes(target)
     } else {
       const valueKey = select.props.valueKey
+      console.log('valueKey', valueKey);
+      
       return (
         arr &&
         arr.some((item) => {
