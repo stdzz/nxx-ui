@@ -145,7 +145,7 @@
       user-select: none;
       overflow: hidden;
       background-color: getCssVar('table-header', 'bg-color');
-      color: getCssVar('table-header', 'text-color');
+      color: #646A73;
       font-weight: bold;
 
       @include when(sortable) {

@@ -29,6 +29,16 @@ $checkbox-font-size: map.merge(
   $checkbox-font-size
 );
 
+$checkbox-font-size-de: () !default;
+$checkbox-font-size-de: map.merge(
+  (
+    'default': 14px,
+    'small': 12px,
+    'large': 14px,
+  ),
+  $checkbox-font-size-de
+);
+
 $checkbox-bordered-input-width: () !default;
 $checkbox-bordered-input-width: map.merge(
   $checkbox-bordered-input-height,
@@ -277,7 +287,7 @@ $checkbox-bordered-input-width: map.merge(
     &.#{$namespace}-checkbox--#{$size} {
       height: map.get($checkbox-height, $size);
       @include e(label) {
-        font-size: map.get($checkbox-font-size, $size);
+        font-size: map.get($checkbox-font-size-de, $size);
       }
       @include e(inner) {
         width: map.get($checkbox-font-size, $size);

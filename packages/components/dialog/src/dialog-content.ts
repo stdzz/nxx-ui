@@ -7,7 +7,7 @@ export const dialogContentProps = buildProps({
   },
   alignCenter: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   closeIcon: {
     type: iconPropType,
