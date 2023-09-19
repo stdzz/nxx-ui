@@ -13,7 +13,7 @@
     @click.stop="() => { item.checked = !item.checked;onSelectCheckbox(index)}"
   >
     <slot :item="item" :index="index" :disabled="disabled">
-      <el-checkbox @click.stop @change="onSelectCheckbox(index)" v-model="item.checked" :label="item.label"/>
+      <el-checkbox :title="item.label" @click.stop @change="onSelectCheckbox(index)" v-model="item.checked" :label="item.label"/>
     </slot>
   </li>
 </template>

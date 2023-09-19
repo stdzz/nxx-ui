@@ -92,16 +92,21 @@
     position: absolute;
     top: 50%;
     right: 19px;
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
     transform: translateY(-50%);
     cursor: pointer;
-    color: getCssVar('message', 'close-icon-color');
+    color: #646A73;
     font-size: getCssVar('message', 'close-size');
 
     &:focus {
       outline-width: 0;
+      background: #e9e9ea;
     }
     &:hover {
-      color: getCssVar('message', 'close-hover-color');
+      background: #d2d3d4;
     }
   }
 }

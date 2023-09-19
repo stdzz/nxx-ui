@@ -3,7 +3,7 @@
     :is="!hasOwnLabel && isLabeledByFormItem ? 'span' : 'label'"
     :class="[
       ns.b(),
-      ns.m(checkboxSize),
+      ns.m(checkboxSize.trim() || 'default'),
       ns.m(effect),
       ns.is('disabled', isDisabled),
       ns.is('bordered', border),

@@ -15,6 +15,7 @@
       :popper-class="[nsSelect.e('popper'), popperClass]"
       :fallback-placements="['bottom-start', 'top-start', 'right', 'left']"
       :effect="effect"
+      :show-arrow="false"
       pure
       trigger="click"
       :transition="`${nsSelect.namespace.value}-zoom-in-top`"

@@ -18,6 +18,7 @@
       :fallback-placements="['bottom-start', 'top-start', 'right', 'left']"
       :effect="effect"
       :placement="placement"
+      :show-arrow="false"
       pure
       :transition="`${nsSelectV2.namespace.value}-zoom-in-top`"
       trigger="click"

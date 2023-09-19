@@ -126,7 +126,7 @@
   @include e(line) {
     position: absolute;
     border-color: inherit;
-    background-color: getCssVar('text-color', 'placeholder');
+    background-color: #bcbdbf;
   }
 
   @include e(line-inner) {

@@ -22,6 +22,7 @@
       :disabled="disabled"
       :transition="`${ns.namespace.value}-zoom-in-top`"
       :teleported="teleported"
+      :show-arrow="false"
       pure
       persistent
       @before-show="handleBeforeShowTooltip"

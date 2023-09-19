@@ -297,7 +297,7 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
 
   @include e(mask) {
     height: 30px;
-    width: 30px;
+    width: calc(100% - 5px) !important;
     border-radius: 4px;
     position: absolute;
     top: 1px;
@@ -383,7 +383,8 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
       justify-content: flex-start;
       box-sizing: border-box !important;
       height: 28px;
-      width: 50px;
+      width: 100%;
+      min-width: 50px;
       padding: 6px 8px;
 
       .#{$namespace}-color-picker__color {

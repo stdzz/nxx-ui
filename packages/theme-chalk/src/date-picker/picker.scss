@@ -32,7 +32,7 @@
     );
 
     &:hover {
-      @include inset-input-border(#{getCssVar('input', 'hover-border-color')});
+      @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
     }
   }
 

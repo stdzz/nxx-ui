@@ -83,7 +83,7 @@
     
 
     &:hover {
-      @include inset-input-border(#{getCssVar('input', 'hover-border-color')});
+      @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
     }
 
     &:focus {
@@ -192,7 +192,7 @@
     );
 
     &:hover {
-      @include inset-input-border(#{getCssVar('input', 'hover-border-color')});
+      @include inset-input-border(#{getCssVar('input', 'focus-border-color')});
     }
 
     @include when(focus) {
@@ -347,6 +347,17 @@
 
     .#{$namespace}-input__icon {
       cursor: not-allowed;
+    }
+
+    &:not(.#{$namespace}-input--dark) {
+      .#{$namespace}-input-group__prepend {
+        @include inset-prepend-border(#{getCssVar('disabled-border-color')});
+      }
+    }
+
+
+    .#{$namespace}-select__prefix--light {
+      border-color: getCssVar('disabled-border-color');
     }
   }
 
@@ -529,7 +540,7 @@
           .#{$namespace}-input__wrapper {
             z-index: 1;
             @include inset-prepend-input-border(
-              getCssVar('input-hover-border-color')
+              getCssVar('input-focus-border-color')
             );
           }
         }
@@ -572,7 +583,7 @@
           .#{$namespace}-input__wrapper {
             z-index: 1;
             @include inset-append-input-border(
-              getCssVar('input-hover-border-color')
+              getCssVar('input-focus-border-color')
             );
           }
         }

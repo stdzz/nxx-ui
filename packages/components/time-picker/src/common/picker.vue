@@ -6,6 +6,7 @@
     pure
     trigger="click"
     v-bind="$attrs"
+    :show-arrow="false"
     role="dialog"
     teleported
     :transition="`${nsDate.namespace.value}-zoom-in-top`"

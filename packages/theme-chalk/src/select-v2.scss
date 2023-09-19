@@ -48,7 +48,7 @@ $input-inline-start: map.get($input-padding-horizontal, 'default') !default;
 
     @include when(hovering) {
       &:not(.is-focused) {
-        border-color: getCssVar('border-color-hover');
+        border-color: getCssVar('color-primary');
       }
     }
 

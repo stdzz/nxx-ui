@@ -5,6 +5,7 @@
     :teleported="teleported"
     :popper-class="[nsCascader.e('dropdown'), popperClass]"
     :popper-options="popperOptions"
+    :show-arrow="false"
     :fallback-placements="[
       'bottom-start',
       'bottom',

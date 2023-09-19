@@ -49,6 +49,11 @@ export const colorPickerProps = buildProps({
     type: Boolean,
     default: false,
   },
+
+  triggerWidth: {
+    type: Number,
+    default: 50,
+  },
   /**
    * @description ColorPicker tabindex
    */

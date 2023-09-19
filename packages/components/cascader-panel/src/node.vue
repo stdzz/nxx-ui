@@ -41,9 +41,7 @@
       -->
       <span />
     </el-radio>
-    <el-icon v-else-if="isLeaf && node.checked" :class="ns.e('prefix')">
-      <check />
-    </el-icon>
+    
 
     <!-- content -->
     <node-content />
@@ -57,6 +55,9 @@
         <arrow-right />
       </el-icon>
     </template>
+    <el-icon v-else-if="isLeaf && node.checked" :class="ns.e('postfix')">
+      <check />
+    </el-icon>
   </li>
 </template>
 

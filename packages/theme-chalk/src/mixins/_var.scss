@@ -38,6 +38,11 @@
     '#FEF1F1'
   );
 
+  @include set-css-var-value(
+    ('color', 'warning', 'light', 21),
+    '#FFE7CC'
+  );
+
 
 
   @include set-css-var-value(

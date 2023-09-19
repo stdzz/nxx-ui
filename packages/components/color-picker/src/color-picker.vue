@@ -26,10 +26,12 @@
           :color="color"
           :colors="predefine"
         />
-        <div :class="ns.be('dropdown', 'btns')">
+        <div @click.stop :class="ns.be('dropdown', 'btns')">
           <span :class="ns.be('dropdown', 'value')">
             <el-input
               v-model="customInput"
+              @keydown.stop
+              @keyup.stop
               :validate-event="false"
               size="small"
               @keyup.enter="handleConfirm"
@@ -74,7 +76,7 @@
         @keydown.enter="handleTrigger"
       >
         <div v-if="colorDisabled" :class="ns.be('picker', 'mask')" />
-        <div :class="ns.be('picker', 'trigger')" @click="handleTrigger">
+        <div :style="isCustom ? {width: triggerWidth ?  triggerWidth + 'px' : 'auto'} : {}" :class="ns.be('picker', 'trigger')" @click="handleTrigger">
           <span :class="[ns.be('picker', 'color'), ns.is('alpha', showAlpha)]">
             <span
               :class="ns.be('picker', 'color-inner')"
@@ -83,6 +85,7 @@
               }"
             >
               <el-icon
+                :style="isCustom ? { marginLeft: triggerWidth ? triggerWidth * 2 - 60 + 'px' : 'auto' } : {}"
                 v-show="modelValue || showPanelColor"
                 :class="[ns.be('picker', 'icon'), ns.is('icon-arrow-down')]"
               >
