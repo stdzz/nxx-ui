@@ -136,6 +136,12 @@ export const inputProps = buildProps({
   prefixIcon: {
     type: iconPropType,
   },
+  iconViewCustom: {
+    type: iconPropType,
+  },
+  iconHideCustom: {
+    type: iconPropType,
+  },
   /**
    * @description container role, internal properties provided for use by the picker component
    */

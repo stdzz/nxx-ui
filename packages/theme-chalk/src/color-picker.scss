@@ -321,6 +321,11 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
     font-size: 0;
     position: relative;
     cursor: pointer;
+
+    &:hover {
+      border-color: getCssVar('color-primary');
+    }
+    
   }
 
   @include e(color) {
@@ -404,6 +409,14 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
       }
 
       
+    }
+
+    @include when(disabled) {
+      .#{$namespace}-color-picker__trigger {
+        &:hover {
+          border-color: getCssVar('border-color');
+        }
+      }
     }
   }
 }

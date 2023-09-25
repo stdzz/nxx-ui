@@ -189,7 +189,6 @@ $checked-icon: "data:image/svg+xml;utf8,%3Csvg class='icon' width='200' height='
 
     & .#{$namespace}-menu-item:not(.is-disabled):hover{
       outline: none;
-      color: getCssVar('menu-hover-text-color');
       background-color: rgba(31, 35, 41, 0.10);
       
     }

@@ -256,7 +256,7 @@ const validateIcon = computed(
   () => validateState.value && ValidateComponentsMap[validateState.value]
 )
 const passwordIcon = computed(() =>
-  passwordVisible.value ? IconView : IconHide
+  passwordVisible.value ? (props.iconViewCustom || IconView) : (props.iconHideCustom || IconHide)
 )
 const containerStyle = computed<StyleValue>(() => [
   rawAttrs.style as StyleValue,
