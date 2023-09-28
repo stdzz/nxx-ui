@@ -204,7 +204,11 @@ $form-item-label-top-margin-bottom: map.merge(
           > .#{$namespace}-form-item__label:before {
           content: '*';
           color: getCssVar('color-danger');
-          margin-right: 4px;
+          margin-left: 2px;
+          font-family: PingFang SC;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
         }
       }
       &.asterisk-right {
@@ -213,7 +217,11 @@ $form-item-label-top-margin-bottom: map.merge(
           > .#{$namespace}-form-item__label:after {
           content: '*';
           color: getCssVar('color-danger');
-          margin-left: 4px;
+          margin-left: 2px;
+          font-family: PingFang SC;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
         }
       }
     }
