@@ -32,7 +32,7 @@ export const popperCoreConfigProps = buildProps({
   },
   offset: {
     type: Number,
-    default: 12,
+    default: 4,
   },
   placement: {
     type: String,

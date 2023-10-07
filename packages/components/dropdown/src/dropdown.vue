@@ -24,7 +24,7 @@
       :teleported="teleported"
       :show-arrow="false"
       pure
-      persistent
+      :persistent="persistent"
       @before-show="handleBeforeShowTooltip"
       @show="handleShowTooltip"
       @before-hide="handleBeforeHideTooltip"

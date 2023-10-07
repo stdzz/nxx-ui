@@ -40,7 +40,7 @@ function genModifiers(options: PopperCoreConfigProps) {
     {
       name: 'offset',
       options: {
-        offset: [0, offset ?? 12],
+        offset: [0, offset ?? 4],
       },
     },
     {

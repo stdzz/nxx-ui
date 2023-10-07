@@ -31,6 +31,10 @@ export const dropdownProps = buildProps({
     ...useTooltipContentProps.effect,
     default: 'light',
   },
+  persistent: {
+    type: Boolean,
+    default: false,
+  },
   type: {
     type: definePropType<ButtonType>(String),
   },
