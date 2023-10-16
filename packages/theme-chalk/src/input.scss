@@ -562,6 +562,12 @@
           .#{$namespace}-input__wrapper {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
+          }
+        }
+      }
+      .#{$namespace}-select:not(.#{$namespace}-select--disabled) {
+        .#{$namespace}-input {
+          .#{$namespace}-input__wrapper {
             @include inset-append-border(#{getCssVar('input-border-color')});
           }
           &.is-focus {
@@ -599,8 +605,23 @@
       .#{$namespace}-select {
         margin: 0 -11px;
         .#{$namespace}-input__wrapper {
-          background: #292929 !important;
+          background: #373737 !important;
           box-shadow: 0 1px 0 0  #5f5f5f inset, 0 -1px 0 0  #5f5f5f inset, -1px 0 0 0  #5f5f5f inset !important;
+        }
+      }
+      .#{$namespace}-select:not(.#{$namespace}-select--disabled) {
+        .#{$namespace}-input__wrapper {
+          background: #292929 !important;
+        }
+      }
+    }
+  }
+  @include m(light) {
+    .#{$namespace}-input-group__append {
+      .#{$namespace}-select.#{$namespace}-select--disabled {
+        .#{$namespace}-input__wrapper {
+          background: #eff0f1 !important;
+          box-shadow: 0 1px 0 0  #bbbfc4 inset, 0 -1px 0 0  #bbbfc4 inset, -1px 0 0 0  #bbbfc4 inset !important;
         }
       }
     }

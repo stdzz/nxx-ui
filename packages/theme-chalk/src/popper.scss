@@ -21,12 +21,12 @@
 
   @include when(dark) {
     color: getCssVar('bg-color');
-    background: getCssVar('text-color', 'primary');
+    background: getCssVar('text-color', 'regular');
     border: 1px solid getCssVar('text-color', 'primary');
 
     #{$arrow-selector}::before {
       border: 1px solid rgba(255, 255, 255, 0.15);
-      background: #292929;
+      background: getCssVar('text-color', 'regular');
       right: 0;
     }
 
@@ -60,7 +60,7 @@
       z-index: -1;
       content: ' ';
       transform: rotate(45deg);
-      background: getCssVar('text-color', 'primary');
+      background: getCssVar('text-color', 'regular');
       box-sizing: border-box;
     }
   }

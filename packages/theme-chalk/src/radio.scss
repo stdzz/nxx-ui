@@ -48,32 +48,6 @@ $radio-font-size-de: map.merge(
     }
   }
 
-  @include m(dark) {
-    @include e(label) {
-      color: #fff;
-    }
-    @include e(input) {
-      @include when(checked) {
-        & + .#{$namespace}-radio__label {
-          color: #fff;
-        }
-      }
-    }
-
-    @include when(disabled) {
-      @include e(label) {
-        color: #5F5F5F !important;
-      }
-      @include e(input) {
-        @include when(checked) {
-          & + .#{$namespace}-radio__label {
-            color: #5F5F5F;
-          }
-        }
-      }
-    }
-  }
-
   @include when(bordered) {
     padding: 0 map.get($checkbox-bordered-padding-right, 'default')-$border-width
       0 map.get($checkbox-bordered-padding-left, 'default')-$border-width;
@@ -244,6 +218,67 @@ $radio-font-size-de: map.merge(
       @include e(inner) {
         width: map.get($radio-font-size-de, $size);
         height: map.get($radio-font-size-de, $size);
+      }
+    }
+  }
+
+  @include m(dark) {
+    @include e(inner) {
+      background-color: transparent;
+      border-color: #757575;
+  
+      &:hover {
+        border-color: #3370FF;
+      }
+  
+      &::after {
+        background-color: #fff;
+      }
+    }
+    @include e(input) {
+      & + span.#{$namespace}-radio__label {
+        color: #fff;
+      }
+      @include when(disabled) {
+        .#{$namespace}-radio__inner {
+          background-color: #373737;
+          border-color: #5F5F5F;
+  
+          &::after {
+            background-color: #373737;
+          }
+
+        }
+        &.is-checked {
+          .#{$namespace}-radio__inner {
+            background-color: #5F5F5F;
+            border-color: #5F5F5F;
+  
+            &::after {
+              background-color: #373737;
+            }
+          }
+        }
+        & + span.#{$namespace}-radio__label {
+          color: #BBBFC4;
+        }
+      }
+  
+      @include when(checked) {
+        .#{$namespace}-radio__inner {
+          background-color: #3370FF;
+          border-color: #3370FF;
+        }
+  
+        & + .#{$namespace}-radio__label {
+          color: #fff;
+        }
+      }
+  
+      @include when(focus) {
+        .#{$namespace}-radio__inner {
+          border-color: #3370FF;
+        }
       }
     }
   }

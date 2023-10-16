@@ -73,5 +73,6 @@ const {
 defineExpose({
   /** @description current collapse-item whether active */
   isActive,
+  handleHeaderClick,
 })
 </script>

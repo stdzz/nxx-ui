@@ -239,8 +239,7 @@ $button-icon-span-gap: map.merge(
     }
 
     &:not(.is-disabled) {
-      &:hover,
-      &:focus {
+      &:hover {
         background: rgba(51, 112, 255, 0.1);
       }
 

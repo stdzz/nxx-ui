@@ -66,7 +66,7 @@ $checkbox-bordered-input-width: map.merge(
     color: #fff;
     @include when(disabled) {
       @include e(label) {
-        color: #5F5F5F !important;
+        color: #5F5F5F;
       }
     }
   }
@@ -281,6 +281,9 @@ $checkbox-bordered-input-width: map.merge(
     padding-left: 8px;
     line-height: 1;
     font-size: getCssVar('checkbox-font-size');
+    &:hover {
+      color: red;
+    }
   }
 
   @each $size in (large, default, small) {
@@ -326,5 +329,80 @@ $checkbox-bordered-input-width: map.merge(
 
   &:last-of-type {
     margin-right: 0;
+  }
+
+  @include m(dark) {
+    @include e(input) {
+      .#{$namespace}-checkbox__inner {
+        background-color: transparent;
+        border-color: #757575;
+        &:hover {
+          border-color: #3370FF;
+        }
+      }
+      @include when(disabled) {
+        
+        .#{$namespace}-checkbox__inner {
+          background-color: #373737;
+          border-color: #5F5F5F;
+  
+          &::after {
+            border-color: #373737;
+          }
+        }
+  
+        &.is-checked {
+          .#{$namespace}-checkbox__inner {
+            background-color: #5F5F5F;
+            border-color: #5F5F5F;
+  
+            &::after {
+              border-color: #373737;
+            }
+          }
+        }
+  
+        &.is-indeterminate {
+          .#{$namespace}-checkbox__inner {
+            background-color: #373737;
+            border-color: #5F5F5F;
+  
+            &::before {
+              background-color: #5F5F5F;
+              border-color: #373737;
+            }
+          }
+        }
+  
+        & + span.#{$namespace}-checkbox__label {
+          color: #BBBFC4;
+        }
+      }
+  
+      @include when(checked) {
+        .#{$namespace}-checkbox__inner {
+          background-color: #3370FF;
+          border-color: #3370FF;
+        }
+  
+      }
+      @include when(focus) {
+        // Visually distinguish when focus
+        &:not(.is-checked) {
+          .#{$namespace}-checkbox__original:not(:focus-visible) {
+            border-color: #3370FF;
+          }
+        }
+      }
+      @include when(indeterminate) {
+        .#{$namespace}-checkbox__inner {
+          background-color: #3370FF;
+          border-color: #3370FF;
+          &::before {
+            background-color: #fff;
+          }
+        }
+      }
+    }
   }
 }

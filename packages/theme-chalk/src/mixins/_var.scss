@@ -43,8 +43,6 @@
     '#FFE7CC'
   );
 
-
-
   @include set-css-var-value(
     ('color', $type, 'dark-2'),
     map.get($colors, $type, 'dark-2')

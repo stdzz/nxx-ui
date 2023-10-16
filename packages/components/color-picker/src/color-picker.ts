@@ -49,6 +49,10 @@ export const colorPickerProps = buildProps({
     type: Boolean,
     default: false,
   },
+  effect: {
+    type: String,
+    default: 'light',
+  },
 
   triggerWidth: {
     type: Number,

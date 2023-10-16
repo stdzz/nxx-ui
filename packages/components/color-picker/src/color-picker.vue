@@ -8,7 +8,7 @@
     :gpu-acceleration="false"
     :popper-class="[ns.be('picker', 'panel'), ns.b('dropdown'), popperClass]"
     :stop-popper-mouse-event="false"
-    effect="light"
+    :effect="effect"
     trigger="click"
     :transition="`${ns.namespace.value}-zoom-in-top`"
     persistent
@@ -76,8 +76,8 @@
         @keydown.enter="handleTrigger"
       >
         <div v-if="colorDisabled" :class="ns.be('picker', 'mask')" />
-        <div :style="isCustom ? {width: triggerWidth ?  triggerWidth + 'px' : 'auto'} : {}" :class="ns.be('picker', 'trigger')" @click="handleTrigger">
-          <span :class="[ns.be('picker', 'color'), ns.is('alpha', showAlpha)]">
+        <div :style="isCustom ? {width: computdTriggerWidth ?  computdTriggerWidth + 'px' : 'auto'} : {}" :class="ns.be('picker', 'trigger')" @click="handleTrigger">
+          <span :class="[ns.be('picker', 'color'), ns.is('alpha', showAlpha), showBorder && 'show-border']">
             <span
               :class="ns.be('picker', 'color-inner')"
               :style="{
@@ -85,7 +85,7 @@
               }"
             >
               <el-icon
-                :style="isCustom ? { marginLeft: triggerWidth ? triggerWidth * 2 - 60 + 'px' : 'auto' } : {}"
+                :style="isCustom ? { marginLeft: computdTriggerWidth ? computdTriggeIconWidth + 'px' : 'auto' } : {}"
                 v-show="modelValue || showPanelColor"
                 :class="[ns.be('picker', 'icon'), ns.is('icon-arrow-down')]"
               >
@@ -158,6 +158,7 @@ const colorSize = useSize()
 const colorDisabled = useDisabled()
 
 
+
 const { inputId: buttonId, isLabeledByFormItem } = useFormItemInputId(props, {
   formItemContext: formItem,
 })
@@ -188,6 +189,21 @@ const displayedColor = computed(() => {
   }
   return displayedRgb(color, props.showAlpha)
 })
+
+const showBorder = computed(() => {
+  return ['rgb(255, 255, 255)', 'rgba(255, 255, 255, 1)', '#FFFFFFFF', '#FFFFFF'].includes(props.modelValue as string)
+})
+
+const computdTriggerWidth = computed(() => {
+  return colorSize.value === 'large' ? props.triggerWidth + 18 : props.triggerWidth
+})
+
+const computdTriggeIconWidth = computed(() => {
+  return colorSize.value === 'large' ? computdTriggerWidth.value * 2 - 70 : computdTriggerWidth.value * 2 - 60
+})
+
+
+
 
 const getEyeDropper = () => {
   if (!isSupported) return
@@ -226,6 +242,7 @@ const btnKls = computed(() => {
     ns.b('picker'),
     ns.is('disabled', colorDisabled.value),
     ns.is('custom', props.isCustom),
+    ns.is('effect', props.effect === 'dark'),
     ns.bm('picker', colorSize.value),
   ]
 })

@@ -75,6 +75,23 @@
   // Disable base
   @include set-component-css-var('disabled', $disabled);
 
+  @include set-css-var-value(
+    ('disabled', 'bg', 'color'),
+    '#EFF0F1'
+  );
+
+  @include set-css-var-value(
+    ('disabled', 'border', 'color'),
+    '#BBBFC4'
+  );
+
+  @include set-css-var-value(
+    ('disabled', 'text', 'color'),
+    '#8D9199'
+  );
+
+  
+
   // overlay & mask
   @include set-component-css-var('overlay-color', $overlay-color);
   @include set-component-css-var('mask-color', $mask-color);

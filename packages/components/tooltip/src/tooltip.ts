@@ -23,6 +23,10 @@ export const useTooltipProps = buildProps({
     type: Boolean,
     default: true,
   },
+  offset: {
+    type: Number,
+    default: 9,
+  },
 })
 
 export const tooltipEmits = [
