@@ -42,7 +42,7 @@
 
     width: map.get($input-height, 'default');
     background: getCssVar('fill-color', 'light');
-    color: getCssVar('text-color', 'regular');
+    color: #646A73;
     cursor: pointer;
     font-size: 13px;
     user-select: none;
@@ -118,8 +118,12 @@
     .#{$namespace}-input-number__decrease,
     .#{$namespace}-input-number__increase {
       background: #373737;
-      color: #fff;
       border-color: #5f5f5f;
+      &.is-disabled {
+        .#{$namespace}-icon {
+          color: #5F5F5F;
+        }
+      }
     }
     &.is-controls-right {
       .#{$namespace}-input-number__decrease,
@@ -161,12 +165,20 @@
       }
       &.is-controls-right {
         .#{$namespace}-input-number__decrease:not(.is-disabled) {
+          &:hover {
+            & + .#{$namespace}-input-number__increase {
+              border-bottom: none;
+            }
+          }
           &::after {
             border-left: 1px solid getCssVar('color-primary');
             border-top: 1px solid getCssVar('color-primary');
           }
         }
         .#{$namespace}-input-number__increase:not(.is-disabled) {
+          &:hover {
+            border-bottom: none;
+          }
           &::after {
             border-left: 1px solid getCssVar('color-primary');
             border-bottom: 1px solid getCssVar('color-primary');
@@ -198,6 +210,24 @@
   }
 
   @include m(light) {
+    @include when(disabled) {
+      .#{$namespace}-input-number__decrease,
+      .#{$namespace}-input-number__increase {
+        background-color: #EFF0F1;
+        .#{$namespace}-icon {
+          color: #BBBFC4;
+        }
+      }
+    }
+    .#{$namespace}-input-number__increase,
+    .#{$namespace}-input-number__decrease {
+      @include when(disabled) {
+        background-color: #EFF0F1;
+        .#{$namespace}-icon {
+          color: #BBBFC4;
+        }
+      }
+    }
     &:not(.is-disabled) {
       &:not(.is-controls-right) {
         .#{$namespace}-input-number__decrease:not(.is-disabled) {
@@ -229,12 +259,20 @@
       }
       &.is-controls-right {
         .#{$namespace}-input-number__decrease:not(.is-disabled) {
+          &:hover {
+            & + .#{$namespace}-input-number__increase {
+              border-bottom: none;
+            }
+          }
           &::after {
             border-left: 1px solid getCssVar('color-primary');
             border-top: 1px solid getCssVar('color-primary');
           }
         }
         .#{$namespace}-input-number__increase:not(.is-disabled) {
+          &:hover {
+            border-bottom: none;
+          }
           &::after {
             border-left: 1px solid getCssVar('color-primary');
             border-bottom: 1px solid getCssVar('color-primary');

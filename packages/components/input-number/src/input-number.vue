@@ -19,7 +19,9 @@
       @keydown.enter="decrease"
     >
       <el-icon>
-        <arrow-down v-if="controlsAtRight" />
+        <svg v-if="controlsAtRight"  xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+          <path d="M5.99952 7.93206L10.0654 3.86619C10.163 3.76856 10.3213 3.76856 10.4189 3.86619L10.7725 4.21975C10.8701 4.31738 10.8701 4.47567 10.7725 4.5733L6.35307 8.99272C6.15781 9.18798 5.84122 9.18798 5.64596 8.99272L1.22654 4.5733C1.12891 4.47567 1.12891 4.31738 1.22654 4.21975L1.5801 3.86619C1.67773 3.76856 1.83602 3.76856 1.93365 3.86619L5.99952 7.93206Z"/>
+        </svg>
         <minus v-else />
       </el-icon>
     </span>
@@ -32,7 +34,9 @@
       @keydown.enter="increase"
     >
       <el-icon>
-        <arrow-up v-if="controlsAtRight" />
+        <svg v-if="controlsAtRight" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+          <path d="M6.00048 4.06794L1.93462 8.13381C1.83699 8.23144 1.6787 8.23144 1.58107 8.13381L1.22751 7.78025C1.12988 7.68262 1.12988 7.52433 1.22751 7.4267L5.64693 3.00728C5.84219 2.81202 6.15878 2.81202 6.35404 3.00728L10.7735 7.4267C10.8711 7.52433 10.8711 7.68262 10.7735 7.78025L10.4199 8.13381C10.3223 8.23144 10.164 8.23144 10.0663 8.13381L6.00048 4.06794Z"/>
+        </svg>
         <plus v-else />
       </el-icon>
     </span>
@@ -75,7 +79,7 @@ import {
   useSize,
 } from '@element-plus/hooks'
 import { debugWarn, isNumber, isString, isUndefined } from '@element-plus/utils'
-import { ArrowDown, ArrowUp, Minus, Plus } from '@element-plus/icons-vue'
+import { Minus, Plus } from '@element-plus/icons-vue'
 import {
   CHANGE_EVENT,
   INPUT_EVENT,

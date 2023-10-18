@@ -43,6 +43,14 @@
     }
   }
 
+  @include when(ndark) {
+    background: #434343;
+    color: #EBEBEB;
+    #{$arrow-selector}::before {
+      background: #434343;
+    }
+  }
+
   @include when(pure) {
     padding: 0;
   }

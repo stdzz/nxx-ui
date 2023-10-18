@@ -90,6 +90,11 @@
     '#8D9199'
   );
 
+  @include set-css-var-value(
+    ('disabled', 'text', 'color'),
+    '#8D9199'
+  );
+
   
 
   // overlay & mask

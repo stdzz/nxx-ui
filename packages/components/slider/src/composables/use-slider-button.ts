@@ -61,6 +61,7 @@ export const useSliderButton = (
     max,
     step,
     showTooltip,
+    tooltipTheme,
     precision,
     sliderSize,
     formatTooltip,
@@ -284,6 +285,7 @@ export const useSliderButton = (
     handleMouseLeave,
     onButtonDown,
     onKeyDown,
+    tooltipTheme,
     setPosition,
   }
 }

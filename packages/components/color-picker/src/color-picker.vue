@@ -89,7 +89,7 @@
                 v-show="modelValue || showPanelColor"
                 :class="[ns.be('picker', 'icon'), ns.is('icon-arrow-down')]"
               >
-                <arrow-down />
+              <svg viewBox="0 0 24 24" id="icon-icon_down_outlined-1"><path d="m12 15.864 8.132-8.132a.5.5 0 0 1 .707 0l.707.707a.5.5 0 0 1 0 .707l-8.839 8.84a1 1 0 0 1-1.414 0l-8.839-8.84a.5.5 0 0 1 0-.707l.707-.707a.5.5 0 0 1 .707 0L12 15.864Z"></path></svg>
               </el-icon>
               <el-icon
                 v-if="!modelValue && !showPanelColor"
@@ -132,7 +132,7 @@ import {
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { debugWarn } from '@element-plus/utils'
-import { ArrowDown, Close, EditPen } from '@element-plus/icons-vue'
+import { Close, EditPen } from '@element-plus/icons-vue'
 import AlphaSlider from './components/alpha-slider.vue'
 import HueSlider from './components/hue-slider.vue'
 import Predefine from './components/predefine.vue'
@@ -199,7 +199,7 @@ const computdTriggerWidth = computed(() => {
 })
 
 const computdTriggeIconWidth = computed(() => {
-  return colorSize.value === 'large' ? computdTriggerWidth.value * 2 - 70 : computdTriggerWidth.value * 2 - 60
+  return colorSize.value === 'large' ? computdTriggerWidth.value * 2 - 67 : computdTriggerWidth.value * 2 - 62
 })
 
 

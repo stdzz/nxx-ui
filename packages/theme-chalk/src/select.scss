@@ -124,7 +124,6 @@
     display: flex;
 
     & .#{$namespace}-select__caret {
-      color: #646A73;
       font-size: 14px;
       transition: transform getCssVar('transition-duration');
       transform: rotateZ(0deg);
@@ -168,6 +167,19 @@
       }
       &:not(.is-disabled) .#{$namespace}-select__caret {
         color: #A6A6A6;
+      }
+    }
+
+    @include m(light) {
+      & .#{$namespace}-select__caret {
+        color: #BBBFC4;
+        &:hover {
+          cursor: not-allowed;
+          color: #BBBFC4;
+        }
+      }
+      &:not(.is-disabled) .#{$namespace}-select__caret {
+        color: #646A73;
       }
     }
 

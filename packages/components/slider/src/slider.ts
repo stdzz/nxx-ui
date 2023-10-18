@@ -59,6 +59,10 @@ export const sliderProps = buildProps({
     type: Boolean,
     default: true,
   },
+  tooltipTheme: {
+    type: String,
+    default: 'dark'
+  },
   formatTooltip: {
     type: definePropType<(val: number) => number | string>(Function),
     default: undefined,

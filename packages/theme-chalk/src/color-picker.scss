@@ -328,6 +328,15 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
     
   }
 
+  &.is-disabled {
+    .#{$namespace}-color-picker__color-inner {
+      opacity: 0.5;
+    }
+    .#{$namespace}-color-picker__color{
+      background-image: none
+    }
+  }
+
   @include when(effect) {
 
     @include e(trigger) {
@@ -339,6 +348,9 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
     .#{$namespace}-color-picker__color {
       border: none;
     }
+    .#{$namespace}-color-picker__icon{
+      color: #A6A6A6 !important;
+     }
     &.is-disabled {
       .#{$namespace}-color-picker__color-inner {
         position: relative;
@@ -347,6 +359,7 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
       .#{$namespace}-color-picker__icon {
         position: relative;
         z-index: 2;
+        color: #5F5F5F !important;
       }
       @include e(mask) {
         background:  #373737;
@@ -442,8 +455,6 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
         margin-left: 39px;
         display: inline-flex !important;
       }
-
-      
     }
 
     @include when(disabled) {
@@ -452,6 +463,9 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
         &:hover {
           border-color:  getCssVar('disabled-border-color');
         }
+      }
+      .#{$namespace}-color-picker__icon {
+        color: #BBBFC4;
       }
     }
 

@@ -19,6 +19,7 @@
       :fallback-placements="['top', 'bottom', 'right', 'left']"
       :stop-popper-mouse-event="false"
       :popper-class="tooltipClass"
+      :effect="tooltipTheme"
       :disabled="!showTooltip"
       persistent
     >
@@ -65,6 +66,7 @@ const {
   button,
   tooltip,
   showTooltip,
+  tooltipTheme,
   tooltipVisible,
   wrapperStyle,
   formatValue,
