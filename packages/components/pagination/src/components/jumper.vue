@@ -3,6 +3,7 @@
     <span :class="[ns.e('goto')]">{{ t('el.pagination.goto') }}</span>
     <el-input
       :size="size"
+      style="width: 48px"
       :class="[ns.e('editor'), ns.is('in-pagination')]"
       :min="1"
       :max="pageCount"

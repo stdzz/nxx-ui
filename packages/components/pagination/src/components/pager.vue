@@ -47,6 +47,7 @@
       :class="[
         'more',
         'btn-quicknext',
+        ((quickNextHover || quickNextFocus) && !disabled) && 'btn-arrow',
         nsIcon.b(),
         nsPager.is('disabled', disabled),
       ]"

@@ -353,6 +353,7 @@ export default defineComponent({
         ...toRefs(props),
         height: API.popupHeight,
       }),
+      displayInputValue: API.states,
       popper: API.popper,
       onSelect: API.onSelect,
       onSelectMultiple: API.onSelectMultiple,
@@ -361,6 +362,8 @@ export default defineComponent({
       onKeyboardNavigate: API.onKeyboardNavigate,
       onKeyboardSelect: API.onKeyboardSelect,
     } as any)
+
+    provide('displayInputValue', API.states)
 
     const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
