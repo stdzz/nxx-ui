@@ -32,7 +32,7 @@
       border-color: getCssVar('text-color', 'primary');
       @include e(icon) {
         border: none;
-        font-family: PingFang SC;
+        font-family: AlibabaPuHuiTi;
         font-weight: 400;
         color: #fff;
         width: 28px;
@@ -147,7 +147,7 @@
   }
 
   @include e(title) {
-    font-family: PingFang SC;
+    font-family: AlibabaPuHuiTi;
     font-size: 14px;
     font-weight: 500;
     line-height: 22px;

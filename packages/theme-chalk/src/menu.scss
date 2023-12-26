@@ -113,11 +113,6 @@ $checked-icon: "data:image/svg+xml;utf8,%3Csvg class='icon' width='200' height='
       a:hover {
         color: inherit;
       }
-
-      &:not(.is-disabled):hover,
-      &:not(.is-disabled):focus {
-        background-color: #fff;
-      }
     }
     & > .#{$namespace}-sub-menu {
       &:focus,
@@ -180,11 +175,6 @@ $checked-icon: "data:image/svg+xml;utf8,%3Csvg class='icon' width='200' height='
           @include checked-icon;
         }
       }
-    }
-    & .#{$namespace}-menu-item:not(.is-disabled):focus {
-      outline: none;
-      color: getCssVar('menu-hover-text-color');
-      background-color: getCssVar('menu-hover-bg-color');
     }
 
     & .#{$namespace}-menu-item:not(.is-disabled):hover{

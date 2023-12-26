@@ -53,7 +53,7 @@
       @include css-var-from-global(('message', 'text-color'), ('color', $type));
 
       .#{$namespace}-message__content {
-        font-family: PingFang SC;
+        font-family: AlibabaPuHuiTi;
         font-size: 14px;
         font-weight: 500;
         line-height: 22px;

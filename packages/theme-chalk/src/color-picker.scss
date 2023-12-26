@@ -419,6 +419,11 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
     &.#{$namespace}-popper {
       border: 1px solid #434343;
     }
+
+    .#{$namespace}-input-number--small .#{$namespace}-input__wrapper {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   }
 
   

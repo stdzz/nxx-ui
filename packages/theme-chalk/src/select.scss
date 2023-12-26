@@ -167,6 +167,9 @@
       }
       &:not(.is-disabled) .#{$namespace}-select__caret {
         color: #A6A6A6;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
@@ -180,6 +183,9 @@
       }
       &:not(.is-disabled) .#{$namespace}-select__caret {
         color: #646A73;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
