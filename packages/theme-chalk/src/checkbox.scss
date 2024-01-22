@@ -14,6 +14,7 @@ $checkbox-bordered-input-height: map.merge(
   (
     'default': 16px,
     'small': 14px,
+    'middle': 14px,
     'large': 12px,
   ),
   $checkbox-bordered-input-height
@@ -24,6 +25,7 @@ $checkbox-font-size: map.merge(
   (
     'default': 16px,
     'small': 14px,
+    'middle': 14px,
     'large': 12px,
   ),
   $checkbox-font-size
@@ -34,6 +36,7 @@ $checkbox-font-size-de: map.merge(
   (
     'default': 14px,
     'small': 12px,
+    'middle': 12px,
     'large': 14px,
   ),
   $checkbox-font-size-de
@@ -229,6 +232,8 @@ $checkbox-bordered-input-width: map.merge(
       top: 2px;
     }
   }
+
+  
   @include e(inner) {
     display: inline-block;
     position: relative;
@@ -309,7 +314,8 @@ $checkbox-bordered-input-width: map.merge(
     }
   }
 
-  &.#{$namespace}-checkbox--small {
+  &.#{$namespace}-checkbox--small,
+  &.#{$namespace}-checkbox--middle {
     @include e(inner) {
       &::after {
         left: 4px;

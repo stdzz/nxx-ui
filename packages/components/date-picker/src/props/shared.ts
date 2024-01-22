@@ -20,6 +20,10 @@ export const datePickerSharedProps = buildProps({
     type: definePropType<Dayjs>(Object),
     required: true,
   },
+  startDate: {
+    type: definePropType<Dayjs>(Object),
+    required: false,
+  },
   minDate: {
     type: definePropType<Dayjs | null>(Object),
   },
@@ -37,6 +41,37 @@ export const datePickerSharedProps = buildProps({
     }),
   },
 } as const)
+
+export const datePickerSharedPropsYear = buildProps({
+  disabledDate: {
+    type: definePropType<(date: Date) => boolean>(Function),
+  },
+  date: {
+    type: definePropType<Dayjs>(Object),
+    required: true,
+  },
+  startDate: {
+    type: definePropType<Dayjs>(Object),
+    required: true,
+  },
+  minDate: {
+    type: definePropType<Dayjs | null>(Object),
+  },
+  maxDate: {
+    type: definePropType<Dayjs | null>(Object),
+  },
+  parsedValue: {
+    type: definePropType<Dayjs | Dayjs[]>([Object, Array]),
+  },
+  rangeState: {
+    type: definePropType<RangeState>(Object),
+    default: () => ({
+      endDate: null,
+      selecting: false,
+    }),
+  },
+} as const)
+
 
 export const panelSharedProps = buildProps({
   type: {

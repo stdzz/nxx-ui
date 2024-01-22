@@ -57,4 +57,18 @@
       }
     }
   }
+
+  &.#{$namespace}-month-table-range {
+    td {
+      padding: 20px 0;
+
+      &.in-range {
+        .cell {
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
 }
