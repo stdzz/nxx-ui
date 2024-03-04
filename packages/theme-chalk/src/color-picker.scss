@@ -342,7 +342,7 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
     @include e(trigger) {
       border-color: #5F5F5F;
       &:not(.is-disabled):hover {
-        border-color: #3370FF;
+        border-color: var(--ed-color-primary);
       }
     }
     .#{$namespace}-color-picker__color {

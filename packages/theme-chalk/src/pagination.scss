@@ -32,8 +32,8 @@
 
   &:hover {
     background: #D6E2FF;
-    border-color: #3370ff !important;
-    color: #3370ff;
+    border-color: var(--ed-color-primary) !important;
+    color: var(--ed-color-primary);
   }
 
   &:active {
@@ -103,7 +103,7 @@
 
     &:hover {
       background: #D6E2FF;
-      border-color: #3370ff !important;
+      border-color: var(--ed-color-primary) !important;
     }
 
     &:active {
@@ -190,11 +190,11 @@
         border: none !important;
         color: #646A73;
         &.btn-arrow {
-          color: #3370ff;
+          color: var(--ed-color-primary);
         }
 
         &:hover {
-          color: #3370ff;
+          color: var(--ed-color-primary);
         }
       }
     }

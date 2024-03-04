@@ -228,7 +228,7 @@ $radio-font-size-de: map.merge(
       border-color: #757575;
   
       &:hover {
-        border-color: #3370FF;
+        border-color: var(--ed-color-primary);
       }
   
       &::after {
@@ -266,8 +266,8 @@ $radio-font-size-de: map.merge(
   
       @include when(checked) {
         .#{$namespace}-radio__inner {
-          background-color: #3370FF;
-          border-color: #3370FF;
+          background-color: var(--ed-color-primary);
+          border-color: var(--ed-color-primary);
         }
   
         & + .#{$namespace}-radio__label {
@@ -277,7 +277,7 @@ $radio-font-size-de: map.merge(
   
       @include when(focus) {
         .#{$namespace}-radio__inner {
-          border-color: #3370FF;
+          border-color: var(--ed-color-primary);
         }
       }
     }
