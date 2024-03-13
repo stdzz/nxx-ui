@@ -7,6 +7,7 @@ export const panelMonthRangeProps = buildProps({
   ...panelRangeSharedProps,
 } as const)
 
-export const panelMonthRangeEmits = ['pick', 'set-picker-option']
+export const panelMonthRangeEmits = ['pick', 'set-picker-option', 'calendar-change',
+'panel-change']
 
 export type PanelMonthRangeProps = ExtractPropTypes<typeof panelMonthRangeProps>

@@ -7,6 +7,7 @@
         'has-sidebar': Boolean($slots.sidebar) || hasShortcuts,
       },
     ]"
+    :style="[formatterStyle(customStyle, ['background', 'text'])]"
   >
     <div :class="ppNs.e('body-wrapper')">
       <slot name="sidebar" :class="ppNs.e('sidebar')" />
@@ -102,6 +103,8 @@
 import { computed, inject, ref, toRef } from 'vue'
 import dayjs from 'dayjs'
 import ElIcon from '@element-plus/components/icon'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 import { useLocale } from '@element-plus/hooks'
 import { DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
 import {
@@ -121,6 +124,7 @@ defineOptions({
 const props = defineProps(panelMonthRangeProps)
 const emit = defineEmits(panelMonthRangeEmits)
 const unit = 'year'
+const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
 const { lang } = useLocale()
 const pickerBase = inject('EP_PICKER_BASE') as any
@@ -184,6 +188,7 @@ const handleRangePick = (val: RangePickValue, close = true) => {
   if (maxDate.value === maxDate_ && minDate.value === minDate_) {
     return
   }
+  emit('calendar-change', [minDate_.toDate(), maxDate_ && maxDate_.toDate()])
   maxDate.value = maxDate_
   minDate.value = minDate_
 
