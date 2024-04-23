@@ -51,7 +51,7 @@
         @touchstart="onTouchStartInput"
         @click.stop
       >
-        <template #prefix>
+        <template #suffix>
           <el-icon
             v-if="triggerIcon"
             :class="nsInput.e('icon')"
@@ -60,8 +60,6 @@
           >
             <component :is="triggerIcon" />
           </el-icon>
-        </template>
-        <template #suffix>
           <el-icon
             v-if="showClose && clearIcon"
             :class="`${nsInput.e('icon')} clear-icon`"
@@ -186,7 +184,6 @@ import ElIcon from '@element-plus/components/icon'
 import ElTooltip from '@element-plus/components/tooltip'
 import { debugWarn, isArray } from '@element-plus/utils'
 import { EVENT_CODE } from '@element-plus/constants'
-import { Clock } from '@element-plus/icons-vue'
 import { formatter, parseDate, valueEquals } from '../utils'
 import { timePickerDefaultProps } from './props'
 
@@ -474,8 +471,6 @@ const displayValue = computed<UserInput>(() => {
   return ''
 })
 
-const isTimeLikePicker = computed(() => props.type.includes('time'))
-
 const isTimePicker = computed(() => props.type.startsWith('time'))
 
 const isDatesPicker = computed(() => props.type === 'dates')
@@ -493,7 +488,7 @@ const HCalendar = h('svg', {
   })
 ])
 const triggerIcon = computed(
-  () => props.prefixIcon || (isTimeLikePicker.value ? Clock : HCalendar)
+  () => props.prefixIcon || HCalendar
 )
 
 

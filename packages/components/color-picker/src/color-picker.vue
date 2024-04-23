@@ -76,7 +76,11 @@
         @keydown.enter="handleTrigger"
       >
         <div v-if="colorDisabled" :class="ns.be('picker', 'mask')" />
-        <div :style="isCustom ? {width: computdTriggerWidth ?  computdTriggerWidth + 'px' : 'auto'} : {}" :class="ns.be('picker', 'trigger')" @click="handleTrigger">
+        
+        <div :style="isCustom ? {width: computdTriggerWidth ?  computdTriggerWidth + 'px' : 'auto'} : {}" :class="[ns.be('picker', 'trigger'), (props.prefixIcon && isCustom) && ns.be('picker', 'trigger-with-icon') ]" @click="handleTrigger">
+          <ElIcon :class="ns.be('picker', 'custom-icon')" v-if="props.prefixIcon && isCustom" style="font-size: 16px">
+            <component :is="props.prefixIcon"></component>
+          </ElIcon>
           <span :class="[ns.be('picker', 'color'), ns.is('alpha', showAlpha), showBorder && 'show-border']">
             <span
               :class="ns.be('picker', 'color-inner')"
@@ -199,7 +203,7 @@ const computdTriggerWidth = computed(() => {
 })
 
 const computdTriggeIconWidth = computed(() => {
-  return colorSize.value === 'large' ? computdTriggerWidth.value * 2 - 67 : computdTriggerWidth.value * 2 - 62
+  return colorSize.value === 'large' ? computdTriggerWidth.value * 2 - 67 : computdTriggerWidth.value * 2 - 62 - (props.prefixIcon ? 72 : 0)
 })
 
 

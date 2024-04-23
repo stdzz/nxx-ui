@@ -369,6 +369,12 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
         background-color: #5F5F5F;
       }
     }
+
+    .#{$namespace}-color-picker__custom-icon {
+      &::after {
+        background-color: #5f5f5f;
+      }
+    }
   }
 
   @include e(color) {
@@ -505,5 +511,24 @@ $color-picker-size: map.merge($common-component-size, $color-picker-size);
   .#{bem('color-picker')},
   .#{bem('color-picker', 'panel')} {
     @include set-css-var-value(('color-picker', 'alpha-bg-a'), '#333333');
+  }
+}
+
+@include e(trigger-with-icon) {
+  .#{$namespace}-color-picker__color {
+    margin-left: 16px;
+  }
+
+  .#{$namespace}-color-picker__custom-icon {
+    position: relative;
+    &::after {
+      content: '';
+      width: 1px;
+      height: calc(100% + 12px);
+      position: absolute;
+      right: -8px;
+      top: -6px;
+      background-color: #BBBFC4;
+    }
   }
 }
