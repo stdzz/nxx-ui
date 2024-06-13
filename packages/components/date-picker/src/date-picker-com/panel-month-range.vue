@@ -29,6 +29,7 @@
               type="button"
               :class="ppNs.e('icon-btn')"
               class="d-arrow-left"
+              :style="[formatterStyle(customStyle, ['text'])]"
               @click="leftPrevYear"
             >
               <el-icon><d-arrow-left /></el-icon>
@@ -37,6 +38,7 @@
               v-if="unlinkPanels"
               type="button"
               :disabled="!enableYearArrow"
+              :style="[formatterStyle(customStyle, ['text'])]"
               :class="[
                 ppNs.e('icon-btn'),
                 { [ppNs.is('disabled')]: !enableYearArrow },
@@ -68,6 +70,7 @@
               :disabled="!enableYearArrow"
               :class="[ppNs.e('icon-btn'), { 'is-disabled': !enableYearArrow }]"
               class="d-arrow-left"
+              :style="[formatterStyle(customStyle, ['text'])]"
               @click="rightPrevYear"
             >
               <el-icon><d-arrow-left /></el-icon>
@@ -76,6 +79,7 @@
               type="button"
               :class="ppNs.e('icon-btn')"
               class="d-arrow-right"
+              :style="[formatterStyle(customStyle, ['text'])]"
               @click="rightNextYear"
             >
               <el-icon><d-arrow-right /></el-icon>

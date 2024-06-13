@@ -20,7 +20,7 @@
           @keydown.enter.prevent.stop="handleMonthTableClick"
         >
           <div>
-            <span class="cell" :style="[isSelectedCell(cell) ? {} : formatterStyle(customStyle, ['text'])]">
+            <span class="cell" :style="[cell.inRange ? {} : formatterStyle(customStyle, ['text'])]">
               {{ t('el.datepicker.months.' + months[cell.text]) }}
             </span>
           </div>

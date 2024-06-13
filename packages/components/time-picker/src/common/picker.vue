@@ -32,6 +32,7 @@
         :size="pickerSize"
         :disabled="pickerDisabled"
         :placeholder="placeholder"
+        :style="$attrs.style"
         :class="[nsDate.b('editor'), nsDate.bm('editor', type), $attrs.class]"
         :readonly="!editable || readonly || isDatesPicker || type === 'week'"
         :label="label"

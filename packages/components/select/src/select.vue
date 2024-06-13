@@ -232,6 +232,13 @@
       </template>
       <template #content>
         <el-select-menu>
+          <div
+            v-if="$slots.header"
+            :class="nsSelect.be('dropdown', 'header')"
+            @click.stop
+          >
+            <slot name="header" />
+          </div>
           <el-scrollbar
             v-show="options.size > 0 && !loading"
             ref="scrollbar"
