@@ -52,7 +52,7 @@
                   @close="deleteTag($event, selected[0])"
                 >
                   <span :class="nsSelect.e('tags-text')" :style="tagTextStyle">
-                    {{ selected[0].currentLabel }}
+                    {{ showWholePath ? selected[0].value.replaceAll('-de-', '/') : selected[0].currentLabel  }}
                   </span>
                 </el-tag>
                 <el-tag
@@ -98,7 +98,7 @@
                               :style="{
                                 maxWidth: inputWidth - 75 + 'px',
                               }"
-                              >{{ item.currentLabel }}</span
+                              >{{ showWholePath ? item.value.replaceAll('-de-', '/') : item.currentLabel }}</span
                             >
                           </el-tag>
                         </div>
@@ -131,7 +131,7 @@
                     <span
                       :class="nsSelect.e('tags-text')"
                       :style="{ maxWidth: inputWidth - 75 + 'px' }"
-                      >{{ item.currentLabel }}</span
+                      >{{ showWholePath ? item.value.replaceAll('-de-', '/') : item.currentLabel }}</span
                     >
                   </el-tag>
                 </span>
@@ -283,6 +283,7 @@ import {
   reactive,
   toRefs,
   unref,
+  watch,
 } from "vue";
 import { useResizeObserver } from "@vueuse/core";
 import { placements } from "@popperjs/core";
@@ -358,6 +359,7 @@ export default defineComponent({
     remoteMethod: Function,
     filterMethod: Function,
     multiple: Boolean,
+    showWholePath: Boolean,
     multipleLimit: {
       type: Number,
       default: 0,

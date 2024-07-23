@@ -11,6 +11,7 @@ export interface QueryChangeCtx {
 export interface SelectContext {
   props: {
     multiple?: boolean
+    showWholePath?: boolean
     effect: {
       type: String,
       values: ['dark', 'light', 'plain'],

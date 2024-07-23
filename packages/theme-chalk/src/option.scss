@@ -50,6 +50,7 @@ $checked-icon: "data:image/svg+xml;utf8,%3Csvg class='icon' width='200' height='
 
     &.selected {
       color: map.get($select-option, 'selected-text-color');
+      padding-right: 30px;
 
       &::after {
         @include checked-icon;

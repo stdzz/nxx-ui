@@ -278,8 +278,9 @@ export const useSelect = (props, states: States, ctx) => {
             ) {
               states.selectedLabel = states.createdLabel;
             } else {
-              states.selectedLabel = states.selected.currentLabel;
+              states.selectedLabel = props.showWholePath ? states.selected.value?.replaceAll('-de-', '/') : states.selected.currentLabel;
             }
+            
             if (props.filterable) states.query = states.selectedLabel;
           }
 
@@ -473,7 +474,7 @@ export const useSelect = (props, states: States, ctx) => {
       } else {
         states.createdSelected = false;
       }
-      states.selectedLabel = option.currentLabel;
+      states.selectedLabel = props.showWholePath ? option.value?.replaceAll('-de-', '/') : option.currentLabel;
       states.selected = option;
       if (props.filterable) states.query = states.selectedLabel;
       return;

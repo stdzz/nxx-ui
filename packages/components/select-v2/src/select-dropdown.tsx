@@ -351,10 +351,10 @@ export default defineComponent({
             }}
           </List>
           { showChecked ?  <div class={[ns.b('btn-group')]} style={formatterStyle(customStyle, ['border'])}>
-            <div onClick={clear} class={[ns.b('btn')]} style={formatterStyle(customStyle, ['text'])}>
+            <div onClick={clear} class={[ns.b('btn')]} style={{ color: '#000000', background: '#ffffff' }}>
               { t('el.datepicker.clear')}
             </div>
-            <div onClick={confirm} class={[ns.b('btn')]}  style={formatterStyle(customStyle, ['text', 'border'])}>
+            <div onClick={confirm} class={[ns.b('btn')]}  style={{ color: '#ffffff', background: '#3370FF'}}>
               { t('el.datepicker.confirm') }
             </div>
           </div> : null}
