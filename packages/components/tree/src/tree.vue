@@ -9,6 +9,7 @@
       ns.is('drop-inner', dragState.dropType === 'inner'),
       { [ns.m('highlight-current')]: highlightCurrent },
     ]"
+    :style="[formatterStyle(customStyle, ['background', 'text'])]"
     role="tree"
   >
     <el-tree-node
@@ -57,8 +58,11 @@ import { useNodeExpandEventBroadcast } from './model/useNodeExpandEventBroadcast
 import { useDragNodeHandler } from './model/useDragNode'
 import { useKeydown } from './model/useKeydown'
 import type Node from './model/node'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 
 import type { ComponentInternalInstance, PropType } from 'vue'
+import { inject } from 'vue'
 import type { Nullable } from '@element-plus/utils'
 import type {
   TreeComponentProps,
@@ -168,6 +172,7 @@ export default defineComponent({
   setup(props, ctx) {
     const { t } = useLocale()
     const ns = useNamespace('tree')
+    const customStyle = inject('$custom-style-filter', {}) as CustomStyle
 
     const store = ref<TreeStore>(
       new TreeStore({
@@ -408,6 +413,8 @@ export default defineComponent({
       dragState,
       el$,
       dropIndicator$,
+      customStyle,
+      formatterStyle,
 
       // computed
       isEmpty,

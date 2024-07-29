@@ -130,6 +130,10 @@ $tag-icon-span-gap: map.merge(
         @include css-var-from-global(('tag', 'text-color'), ('color', 'white'));
       }
     }
+
+    &.#{$namespace}-tag--info {
+      background-color: #454b53 !important;
+    }
   }
 
   @include m(plain) {

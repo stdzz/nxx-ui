@@ -48,6 +48,7 @@
                   :size="collapseTagSize"
                   :hit="selected[0].hitState"
                   :type="tagType"
+                  :effect="effect"
                   disable-transitions
                   @close="deleteTag($event, selected[0])"
                 >
@@ -58,6 +59,7 @@
                 <el-tag
                   v-if="selected.length > 1"
                   :closable="false"
+                  :effect="effect"
                   :size="collapseTagSize"
                   :type="tagType"
                   disable-transitions
@@ -67,6 +69,7 @@
                     :disabled="dropMenuVisible"
                     :fallback-placements="['bottom', 'top', 'right', 'left']"
                     :effect="effect"
+                    :show-arrow="false"
                     placement="bottom"
                     :teleported="teleported"
                   >
@@ -85,6 +88,7 @@
                           <el-tag
                             :key="getValueKey(item)"
                             class="in-tooltip"
+                            :effect="effect"
                             :closable="!selectDisabled && !item.isDisabled"
                             :size="collapseTagSize"
                             :hit="item.hitState"
@@ -125,6 +129,7 @@
                     :size="collapseTagSize"
                     :hit="item.hitState"
                     :type="tagType"
+                    :effect="effect"
                     disable-transitions
                     @close="deleteTag($event, item)"
                   >

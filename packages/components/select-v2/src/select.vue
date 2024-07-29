@@ -73,6 +73,7 @@
                     :disabled="dropdownMenuVisible"
                     :fallback-placements="['bottom', 'top', 'right', 'left']"
                     :effect="effect"
+                    :show-arrow="false"
                     placement="bottom"
                     :teleported="false"
                   >

@@ -9,6 +9,7 @@
         hover,
       },
     ]"
+    :style="[formatterStyle(customStyle, ['text'])]"
     @mouseenter="hoverItem"
     @click.stop="selectOptionClick"
   >
@@ -27,10 +28,13 @@ import {
   onBeforeUnmount,
   reactive,
   toRefs,
+  inject
 } from 'vue'
 import { useNamespace } from '@element-plus/hooks'
 import { useOption } from './useOption'
 import type { SelectOptionProxy } from './token'
+import { formatterStyle } from '@element-plus/utils'
+import type { CustomStyle } from '@element-plus/utils'
 
 export default defineComponent({
   name: 'ElOption',
@@ -50,6 +54,8 @@ export default defineComponent({
   },
 
   setup(props) {
+    const customStyle = inject('$custom-style-filter', {}) as CustomStyle
+
     const ns = useNamespace('select')
     const states = reactive({
       index: -1,
@@ -101,6 +107,8 @@ export default defineComponent({
       hover,
       selectOptionClick,
       states,
+      customStyle,
+      formatterStyle
     }
   },
 })
