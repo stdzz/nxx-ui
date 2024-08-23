@@ -240,15 +240,15 @@ $button-icon-span-gap: map.merge(
 
     &:not(.is-disabled) {
       &:hover {
-        background: rgba(51, 112, 255, 0.1);
+        background: var(--#{$namespace}-color-primary-1a, rgba(51, 112, 255, 0.1));
       }
 
       &:focus-visible {
-        background: rgba(51, 112, 255, 0.1);
+        background: var(--#{$namespace}-color-primary-1a, rgba(51, 112, 255, 0.1));
       }
 
       &:active {
-        background: rgba(51, 112, 255, 0.2);
+        background: var(--#{$namespace}-color-primary-33, rgba(51, 112, 255, 0.2));
       }
 
       @include when(has-bg) {

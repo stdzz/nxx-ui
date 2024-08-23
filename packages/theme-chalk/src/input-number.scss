@@ -138,8 +138,8 @@
 
         &:hover {
           color: getCssVar('color-primary');
-          background-color: rgba(#3370FF, 0.2);
-          & ~ .#{$namespace}-input:not(.is-disabled) .#{$namespace}-input__wrapper {
+          background-color: var(--#{$namespace}-color-primary-33, rgba(51, 112, 255, 0.2));
+        & ~ .#{$namespace}-input:not(.is-disabled) .#{$namespace}-input__wrapper {
             box-shadow: 0 0 0 1px
               var(
                 #{getCssVarName('input', 'focus-border-color')},
