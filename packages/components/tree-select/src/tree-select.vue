@@ -1,59 +1,83 @@
 <script lang="ts">
 // @ts-nocheck
-import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
-import { pick } from 'lodash-unified'
-import ElSelect from '@element-plus/components/select'
-import ElTree from '@element-plus/components/tree'
-import { useSelect } from './select'
-import { useTree } from './tree'
+import {
+  computed,
+  defineComponent,
+  h,
+  onMounted,
+  reactive,
+  ref,
+  inject,
+} from "vue";
+import { formatterStyle } from "@element-plus/utils";
+import { useNamespace, useLocale } from "@element-plus/hooks";
+import { pick } from "lodash-unified";
+import ElSelect from "@element-plus/components/select";
+import ElTree from "@element-plus/components/tree";
+import { useSelect } from "./select";
+import { useTree } from "./tree";
+import type { CustomStyle } from "@element-plus/utils";
 
 export default defineComponent({
-  name: 'ElTreeSelect',
+  name: "ElTreeSelect",
   // disable `ElSelect` inherit current attrs
   inheritAttrs: false,
   props: {
     ...ElSelect.props,
     ...ElTree.props,
+    showBtn: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
-    const { slots, expose } = context
+    const { slots, expose, emit } = context;
+    const ns = useNamespace("select-tree");
+    const { t } = useLocale();
+    const customStyle = inject("$custom-style-filter", {}) as CustomStyle;
+    const select = ref<InstanceType<typeof ElSelect>>();
+    const tree = ref<InstanceType<typeof ElTree>>();
 
-    const select = ref<InstanceType<typeof ElSelect>>()
-    const tree = ref<InstanceType<typeof ElTree>>()
+    const key = computed(() => props.nodeKey || props.valueKey || "value");
 
-    const key = computed(() => props.nodeKey || props.valueKey || 'value')
+    const selectProps = useSelect(props, context, { select, tree, key });
+    const treeProps = useTree(props, context, { select, tree, key });
+    const clear = () => {
+      emit("treeSelectClear", tree.value?.setCheckedKeys([]));
+    };
 
-    const selectProps = useSelect(props, context, { select, tree, key })
-    const treeProps = useTree(props, context, { select, tree, key })
+    const confirm = () => {
+      emit("treeSelectConfirm", tree.value?.getCheckedKeys());
+    };
 
     // expose ElTree/ElSelect methods
-    const methods = reactive({})
-    expose(methods)
+    const methods = reactive({});
+    expose(methods);
     onMounted(() => {
       Object.assign(methods, {
         ...pick(tree.value, [
-          'filter',
-          'updateKeyChildren',
-          'getCheckedNodes',
-          'setCheckedNodes',
-          'getCheckedKeys',
-          'setCheckedKeys',
-          'setChecked',
-          'getHalfCheckedNodes',
-          'getHalfCheckedKeys',
-          'getCurrentKey',
-          'getCurrentNode',
-          'setCurrentKey',
-          'setCurrentNode',
-          'getNode',
-          'remove',
-          'append',
-          'insertBefore',
-          'insertAfter',
+          "filter",
+          "updateKeyChildren",
+          "getCheckedNodes",
+          "setCheckedNodes",
+          "getCheckedKeys",
+          "setCheckedKeys",
+          "setChecked",
+          "getHalfCheckedNodes",
+          "getHalfCheckedKeys",
+          "getCurrentKey",
+          "getCurrentNode",
+          "setCurrentKey",
+          "setCurrentNode",
+          "getNode",
+          "remove",
+          "append",
+          "insertBefore",
+          "insertAfter",
         ]),
-        ...pick(select.value, ['focus', 'blur']),
-      })
-    })
+        ...pick(select.value, ["focus", "blur"]),
+      });
+    });
 
     return () =>
       h(
@@ -71,16 +95,47 @@ export default defineComponent({
         }),
         {
           ...slots,
-          default: () =>
+          default: () => [
             h(
               ElTree,
               reactive({
                 ...treeProps,
+                showBtn: props.showBtn,
                 ref: (ref) => (tree.value = ref),
               })
             ),
+            props.showBtn
+              ? h(
+                  "div",
+                  {
+                    class: ns.b("btn-group"),
+                    style: formatterStyle(customStyle, ["border"]),
+                  },
+                  [
+                    h(
+                      "div",
+                      {
+                        onClick: clear,
+                        class: ns.b("btn"),
+                        style: { color: "#000000", background: "#ffffff" },
+                      },
+                      t("el.datepicker.clear")
+                    ),
+                    h(
+                      "div",
+                      {
+                        onClick: confirm,
+                        class: ns.b("btn"),
+                        style: { color: "#ffffff", background: "#3370FF" },
+                      },
+                      t("el.datepicker.confirm")
+                    ),
+                  ]
+                )
+              : null,
+          ],
         }
-      )
+      );
   },
-})
+});
 </script>

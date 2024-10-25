@@ -22,6 +22,31 @@
       content: none;
     }
 
+    .#{$namespace}-select-dropdown__list:has(.#{$namespace}-select-tree-btn-group) {
+      margin-bottom: 0 !important;
+    }
+
+    .#{$namespace}-select-tree-btn-group {
+      border-top: 1px solid getCssVar('border-color');
+      display: flex;
+      justify-content: space-between;
+      height: 32px;
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+      .#{$namespace}-select-tree-btn {
+        height: 100%;
+        width: 50%;
+        line-height: 32px;
+        cursor: pointer;
+        text-align: center;
+      }
+  
+      .#{$namespace}-select-tree-btn + .#{$namespace}-select-tree-btn {
+        border-left: 1px solid getCssVar('border-color');
+      }
+    }
+
     
 
     .#{$namespace}-select-dropdown__item {

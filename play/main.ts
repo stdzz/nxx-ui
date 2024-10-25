@@ -5,7 +5,6 @@ import "@element-plus/theme-chalk/src/index.scss";
   const apps = import.meta.glob("./src/*.vue");
   const name = location.pathname.replace(/^\//, "") || "App";
   const file = apps[`./src/${name}.vue`];
-  console.log("file", file);
 
   if (!file) {
     location.pathname = "App";
